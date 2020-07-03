@@ -9,10 +9,7 @@ entries:
     - output: web,pdf
       title: Overview
       url: /
-    - output: web,pdf
-      title: 'Physics '
-      url: /physics
     output: web
-    title: mosely
+    title: moseley
   output: web
   title: Sidebar
