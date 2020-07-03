@@ -1,4 +1,4 @@
-# Welcome to `mosely` 
+# Welcome to `moseley` 
 > A tiny python package for simulating XRF spectra to better understand measurements 
 
 
