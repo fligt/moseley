@@ -1,9 +1,9 @@
-repository: fligt/inktime
+repository: fligt/moseley
 output: web
-topnav_title: inktime
-site_title: inktime
+topnav_title: moseley
+site_title: moseley
 company_name: Frank Ligterink
-description: Physics simulations for interdisciplinary investigation of historic drawings
+description: A tiny wrapper python package for simulating XRF spectra to better understand measurements 
 # Set to false to disable KaTeX math
 use_math: true
 # Add Google analytics id if you have one and want to use it here

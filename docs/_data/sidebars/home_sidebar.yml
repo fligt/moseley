@@ -9,6 +9,9 @@ entries:
     - output: web,pdf
       title: Overview
       url: /
+    - output: web,pdf
+      title: 'Moseley''s law '
+      url: /mplot
     output: web
     title: moseley
   output: web
