@@ -4,4 +4,4 @@ __all__ = ['abc']
 
 # Cell
 def abc(x):
-    print(x)
+    print(f'hoi {x}')
