@@ -2,7 +2,7 @@ topnav:
 - title: Topnav
   items:
     - title: github
-      external_url: https://github.com/fligt/inktime/tree/master/
+      external_url: https://github.com/fligt/moseley/
 
 #Topnav dropdowns
 topnav_dropdowns:
