@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.cm as cm
 
-# Cell
+
 
 def make_ptable():
     '''Make numpy array with element attributes for regular part of period table.
@@ -39,6 +39,7 @@ def make_ptable():
     is_regular = ~np.isnan(ptable_df['group_id'].values)
 
     return ptable, is_regular
+
 
 def colorize(elem_selected):
     '''Colorizes selected elements with bright high contrast colors.
@@ -143,12 +144,9 @@ def ptable_plot(elem_select=None, figname=None):
 
 
 
-# Cell
-
 # fisx instantiation is needed before continuing
 elementsInstance = Elements()
 elementsInstance.initializeAsPyMca()
-print('Ready with loading XRF data into memory')
 
 class XFluo:
 
@@ -291,7 +289,7 @@ class XFluo:
 
         # (self.peak_energies[i], self.peak_intensities[i]),
 
-def moseley_law(E_K_alpa_keV):
+def moseley_law(E_K_alpha_keV):
     '''Square root form of Moseley's law.
 
     Args:
