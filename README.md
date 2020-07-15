@@ -1,4 +1,4 @@
-# Welcome to `mosely` 
+# Welcome to moseley 
 > A tiny python package for simulating XRF spectra to better understand measurements 
 
 
@@ -16,4 +16,4 @@ If you would like to adapt this plot to your own needs, for instance to to see w
 
 ## Usage 
 
-More info follows soon. 
+See documentation: https://fligt.github.io/moseley/
