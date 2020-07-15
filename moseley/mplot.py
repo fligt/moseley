@@ -31,7 +31,7 @@ import matplotlib.cm as cm
 def make_ptable():
     '''Make numpy array with element attributes for regular part of the periodic table.
 
-    The irregular Lanthanides and Actinides series are very rare, so we do not plot them'''
+    The irregular Lanthanides and Actinides series are rare, so we do not plot them'''
 
     ptable_df = mv.get_table('elements')
     ptable = ptable_df[['atomic_number', 'symbol', 'name', 'group_id', 'period']].values
