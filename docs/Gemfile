@@ -5,3 +5,8 @@ gem 'github-pages', group: :jekyll_plugins
 
 # Added at 2019-11-25 10:11:40 -0800 by jhoward:
 gem "jekyll", "~> 3.7"
+
+# Added by fligt
+gem "kramdown", ">= 2.3.0"
+
+
