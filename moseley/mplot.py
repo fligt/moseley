@@ -69,9 +69,9 @@ def _colorize(elem_selected):
     elif n_sel <= 20:
         cmap = cm.tab20
     else:
-        cmap = cm.viridis
+        cmap = cm.autumn
 
-    bright_colors = cmap(range(n_sel))
+    bright_colors = cmap(np.linspace(0, 1, n_sel))
 
     # now update colors of selected elements
     symbols = ptable[:,1]
