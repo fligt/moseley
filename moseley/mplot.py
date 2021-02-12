@@ -40,6 +40,8 @@ def make_ptable():
     return ptable, is_regular
 
 
+
+
 def _colorize(elem_selected):
     '''Colorizes selected elements with bright high contrast colors.
 
@@ -64,14 +66,24 @@ def _colorize(elem_selected):
     colors[:] = default_color
 
     # choose best bright contrast color map
-    if n_sel <= 10:
-        cmap = cm.tab10
-    elif n_sel <= 20:
-        cmap = cm.tab20
-    else:
-        cmap = cm.prism
+    #if n_sel <= 10:
+    #    cmap = cm.tab10
+    #elif n_sel <= 20:
+    #    cmap = cm.tab20
+    #else:
+    #    cmap = cm.prism
 
-    bright_colors = cmap(np.linspace(0, 1, n_sel))
+    #bright_colors = cmap(np.linspace(0, 1, n_sel))
+
+    # extended discrete color map
+    # (bit rough but gets the job done)
+
+    tab20b = cm.tab20b(range(20))
+    tab20c = cm.tab20c(range(20))
+    tab20x4 = np.r_[tab20b, tab20c,tab20b, tab20c]
+
+    bright_colors = tab20x4[0:n_sel]
+
 
     # now update colors of selected elements
     symbols = ptable[:,1]
