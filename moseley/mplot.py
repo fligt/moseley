@@ -79,10 +79,10 @@ def _colorize(elem_selected):
     # (bit rough but gets the job done)
 
     #tab20b = cm.tab20b(range(20))
-    tab20c = cm.tab20c(range(20))
-    tab20x4 = np.r_[tab20c, tab20c,tab20c, tab20c]
+    tab10 = cm.tab10(range(10))
+    tab10x8 = np.r_[tab10, tab10, tab10, tab10, tab10, tab10, tab10, tab10]
 
-    bright_colors = tab20x4[0:n_sel]
+    bright_colors = tab10x8[0:n_sel]
 
 
     # now update colors of selected elements
