@@ -372,6 +372,7 @@ def moseley_plot(tube_keV, elem_select=None, weight_list='equal', law=True, fign
     ax.grid(False)
     ax.set_title(f'Moseley plot (x-ray tube at {np.max(tube_keV)} keV)')
     ax.legend()
+    plt.tight_layout()
 
     if figname is not None:
         print(f'Saving plot as: {figname}...')
