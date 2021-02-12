@@ -78,9 +78,9 @@ def _colorize(elem_selected):
     # extended discrete color map
     # (bit rough but gets the job done)
 
-    tab20b = cm.tab20b(range(20))
+    #tab20b = cm.tab20b(range(20))
     tab20c = cm.tab20c(range(20))
-    tab20x4 = np.r_[tab20c, tab20b,tab20c, tab20b]
+    tab20x4 = np.r_[tab20c, tab20c,tab20c, tab20c]
 
     bright_colors = tab20x4[0:n_sel]
 
