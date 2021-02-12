@@ -69,7 +69,7 @@ def _colorize(elem_selected):
     elif n_sel <= 20:
         cmap = cm.tab20
     else:
-        cmap = cm.autumn
+        cmap = cm.hsv
 
     bright_colors = cmap(np.linspace(0, 1, n_sel))
 
