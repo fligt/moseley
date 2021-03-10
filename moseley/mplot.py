@@ -296,7 +296,8 @@ class XFluo:
         elif peak_labels is 'none':
             pass
 
-        fig.tight_layout()
+        # seems to slow down plotting
+        #fig.tight_layout()
 
         # (self.peak_energies[i], self.peak_intensities[i]),
 
