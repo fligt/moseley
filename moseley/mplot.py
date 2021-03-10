@@ -40,6 +40,8 @@ def make_ptable():
     return ptable, is_regular
 
 
+
+
 def _colorize(elem_selected):
     '''Colorizes selected elements with bright high contrast colors.
 
@@ -64,14 +66,24 @@ def _colorize(elem_selected):
     colors[:] = default_color
 
     # choose best bright contrast color map
-    if n_sel <= 10:
-        cmap = cm.tab10
-    elif n_sel <= 20:
-        cmap = cm.tab20
-    else:
-        cmap = cm.autumn
+    #if n_sel <= 10:
+    #    cmap = cm.tab10
+    #elif n_sel <= 20:
+    #    cmap = cm.tab20
+    #else:
+    #    cmap = cm.prism
 
-    bright_colors = cmap(np.linspace(0, 1, n_sel))
+    #bright_colors = cmap(np.linspace(0, 1, n_sel))
+
+    # extended discrete color map
+    # (bit rough but gets the job done)
+
+    #tab20b = cm.tab20b(range(20))
+    tab10 = cm.tab10(range(10))
+    tab10x8 = np.r_[tab10, tab10, tab10, tab10, tab10, tab10, tab10, tab10]
+
+    bright_colors = tab10x8[0:n_sel]
+
 
     # now update colors of selected elements
     symbols = ptable[:,1]
@@ -372,6 +384,7 @@ def moseley_plot(tube_keV, elem_select=None, weight_list='equal', law=True, fign
     ax.grid(False)
     ax.set_title(f'Moseley plot (x-ray tube at {np.max(tube_keV)} keV)')
     ax.legend()
+    plt.tight_layout()
 
     if figname is not None:
         print(f'Saving plot as: {figname}...')
