@@ -234,7 +234,7 @@ class XFluo:
 
 
 
-    def plot(self, ax=None, color=None, figsize=[12, 5], up=False, mos=False, peak_labels=True):
+    def plot(self, ax=None, color=None, figsize=[12, 5], up=False, mos=False, peak_labels='simple'):
         '''Plot an xrf spectrum'''
 
         if ax is None:
@@ -278,7 +278,7 @@ class XFluo:
         if peak_labels is 'full':
             xy_list = list(zip(px, py))
             for i, s in enumerate(self.peak_excits):
-                ax.annotate(f'{self.element}\n{s}\n{self.peak_energies[i]:.2f}keV',
+                ax.annotate(f'{self.element}\n{s}\n{self.peak_energies[i]:.3f}keV',
                             xy_list[i],
                             xycoords='data', xytext=(0, 7), textcoords='offset points',
                             color=color,
@@ -297,7 +297,8 @@ class XFluo:
             pass
 
         # seems to slow down plotting
-        #fig.tight_layout()
+        #or not?
+        fig.tight_layout()
 
         # (self.peak_energies[i], self.peak_intensities[i]),
 

@@ -38,7 +38,7 @@ sidebar: home_sidebar
 <p>An x-ray fluorescence spectrum for a specific pure element contains a characteristic combination of peaks of different heights at different energies. It follows that for a material that contains a mixture of different elements a  spectrum with a complex pattern of peaks will arise. Inferring a material composition from a measured XRF spectrum amounts to attributing peaks to elements.</p>
 <p>In 1913-1914 the young British physicist <a href="https://en.wikipedia.org/wiki/Moseley%27s_law">Henry Moseley</a> discovered a beautifully simple regular pattern that relates the energy of the (typically) strongest peak in a pure element spectrum (called the $K_{\alpha}$ line) to the atomic number ($Z$).</p>
 <p>{% raw %}
-$$ E_{K_{\alpha}} = 10.2 \left( Z^2 - 1 \right) $$
+$$ E_{K_{\alpha}} = 10.2 \left( Z - 1 \right)^2 $$
 {% endraw %}</p>
 <p>Where the energy is expressed in units of electron volt $[eV]$. Suppose now that you observe a large peak in a spectrum at a given energy but it is unknown which element generated. It is useful now to invert this expression to calculate the atomic number of the prime suspect chemical element that possibly emitted the peak.</p>
 <p>{% raw %}
@@ -279,7 +279,7 @@ $$ Z = \sqrt{\frac{6400}{10.2}} + 1 = 26.05 \approx 26 \rightarrow \rm{Fe} $$
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="moseley_law" class="doc_header"><code>moseley_law</code><a href="https://github.com/fligt/moseley/tree/master/moseley/mplot.py#L304" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>moseley_law</code>(<strong><code>E_K_alpha_keV</code></strong>)</p>
+<h4 id="moseley_law" class="doc_header"><code>moseley_law</code><a href="https://github.com/fligt/moseley/tree/master/moseley/mplot.py#L305" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>moseley_law</code>(<strong><code>E_K_alpha_keV</code></strong>)</p>
 </blockquote>
 <p>Square root form of Moseley's law.</p>
 <p>Args:
@@ -310,7 +310,7 @@ $$ Z = \sqrt{\frac{6400}{10.2}} + 1 = 26.05 \approx 26 \rightarrow \rm{Fe} $$
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="moseley_plot" class="doc_header"><code>moseley_plot</code><a href="https://github.com/fligt/moseley/tree/master/moseley/mplot.py#L322" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>moseley_plot</code>(<strong><code>tube_keV</code></strong>, <strong><code>elem_select</code></strong>=<em><code>None</code></em>, <strong><code>weight_list</code></strong>=<em><code>'equal'</code></em>, <strong><code>law</code></strong>=<em><code>True</code></em>, <strong><code>figname</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="moseley_plot" class="doc_header"><code>moseley_plot</code><a href="https://github.com/fligt/moseley/tree/master/moseley/mplot.py#L323" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>moseley_plot</code>(<strong><code>tube_keV</code></strong>, <strong><code>elem_select</code></strong>=<em><code>None</code></em>, <strong><code>weight_list</code></strong>=<em><code>'equal'</code></em>, <strong><code>law</code></strong>=<em><code>True</code></em>, <strong><code>figname</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Generate Moseley plot of simulated xrf spectra for periodic table.</p>
 <p>Args:
