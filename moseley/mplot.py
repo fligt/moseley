@@ -6,6 +6,7 @@ __all__ = ['make_ptable', 'ptable_plot', 'XFluo', 'moseley_law', 'moseley_plot',
 
 # Periodic Table
 import mendeleev as mv
+from mendeleev.fetch import fetch_table
 
 # basic XRF physics
 from fisx import Elements
@@ -33,7 +34,8 @@ def make_ptable():
 
     The irregular Lanthanides and Actinides series are rare, so we do not plot them'''
 
-    ptable_df = mv.get_table('elements')
+    #ptable_df = mv.get_table('elements') # mendeleev 0.5
+    ptable_df = fetch_table('elements')
     ptable = ptable_df[['atomic_number', 'symbol', 'name', 'group_id', 'period']].values
     is_regular = ~np.isnan(ptable_df['group_id'].values)
 
