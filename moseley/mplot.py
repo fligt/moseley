@@ -359,9 +359,6 @@ def moseley_plot(tube_keV, elem_select=None, weight_list='equal', law=True, fign
 
     ax.plot(E_keV_list, Z, zorder=-10, linestyle=':', color='k', label="Moseley's law")
 
-    # need to limit range from 'Si' to 'Pb'
-    # need to reverse the plotting order (high Z first) to get right overlap
-
     Pb_Si = symbols[13:82] [::-1]
     Pb_Si_colors = colors[13:82] [::-1]
 
