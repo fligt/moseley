@@ -26,6 +26,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.cm as cm
+import seaborn as sb
 
 
 
@@ -42,59 +43,56 @@ def make_ptable():
     return ptable, is_regular
 
 
+def _colorize(elem_select, crop=True):
+    '''High contrast standard color palette for list of elements *elem_select*.
 
-
-def _colorize(elem_selected):
-    '''Colorizes selected elements with bright high contrast colors.
-
-    Args:
-        selected_elements (list of strings): selected chemical symbols
-    Example:
-        colorize(['Ca', 'Fe'])
-
-    Returns:
-        colors (array of color tuples):
-        indices_selected (array of int):
     '''
 
-    ptable, is_regular = make_ptable()
-    n_tot = len(ptable)
-    n_sel = len(elem_selected)
+    DEFAULT_COLOR = [0.4, 0.4, 0.9, 0.3]
 
-    # initialize list with light blue grey
-    default_color = [0.4, 0.4, 0.9, 0.3]
+    # return single color tuple is argument is string, e.g. 'Fe'
+    return_single_color_tuple = False
+    if type(elem_select) == str:
+        return_single_color_tuple = True
+        elem_select = [elem_select]
 
-    colors = np.ones([n_tot, 4])
-    colors[:] = default_color
+    # create standard palette for Hydrogen(Z=1) to Organesson(Z=117)
+    palette = []
+    for tone in ['pastel', 'bright', 'deep', 'dark'] * 3:
+        palette.extend(sb.palettes.color_palette(tone))
+    palette = np.array(palette)[0:118]
+    # and include unity alpha channel
+    palette = np.c_[palette, np.ones(len(palette))]
 
-    # choose best bright contrast color map
-    #if n_sel <= 10:
-    #    cmap = cm.tab10
-    #elif n_sel <= 20:
-    #    cmap = cm.tab20
-    #else:
-    #    cmap = cm.prism
+    # return full color palette if argument is empty list
+    if len(elem_select) == 0:
+        return palette
 
-    #bright_colors = cmap(np.linspace(0, 1, n_sel))
+    else:
+        # find index position (Z-1) of elements
+        ptable_indices = [mv.element(e).atomic_number - 1 for e in elem_select]
 
-    # extended discrete color map
-    # (bit rough but gets the job done)
+        # initialize all element color list with light blue grey
+        colors = np.zeros([118, 4])
+        colors[:] = DEFAULT_COLOR
 
-    #tab20b = cm.tab20b(range(20))
-    tab10 = cm.tab10(range(10))
-    tab10x8 = np.r_[tab10, tab10, tab10, tab10, tab10, tab10, tab10, tab10]
+        # colorize selected elements with standard palette color
+        colors[ptable_indices] = palette[ptable_indices]
 
-    bright_colors = tab10x8[0:n_sel]
+        # skip colors for non selected elements
+        if crop:
+            colors = palette[ptable_indices]
+
+            # for single element just return color tuple
+            if return_single_color_tuple:
+                return colors[0]
+
+            else:
+                return colors, ptable_indices
+
+        return colors, ptable_indices
 
 
-    # now update colors of selected elements
-    symbols = ptable[:,1]
-    is_selected = [s in elem_selected for s in symbols]
-    indices_selected = np.arange(n_tot)[is_selected]
-
-    colors[indices_selected] = bright_colors
-
-    return colors, indices_selected
 
 def _draw_box(ax, element_attrs, edgecolor=None, facecolor=None):
     '''Draw a box for element *element_attrs*  in subplot *ax*. '''
@@ -133,7 +131,7 @@ def ptable_plot(elem_select=None, figname=None):
     ptable, is_regular = make_ptable()
 
     # colorize full table
-    colors, _ = _colorize(elem_select)
+    colors, _ = _colorize(elem_select, crop=False)
 
     # continue with regular elements only
     ptable = ptable[is_regular]
@@ -264,6 +262,9 @@ class XFluo:
         #ax.plot(self.x, self.total_spectrum, color=color)
         #ax.scatter(self.peak_energies, self.peak_intensities + dy, color=color)
 
+        if color is None:
+            color = _colorize(self.element)
+
         ax.fill_between(x, y, y2=Z, color=color, alpha=0.3)
         ax.plot(x, y, color=color)
 
@@ -348,7 +349,7 @@ def moseley_plot(tube_keV, elem_select=None, weight_list='equal', law=True, fign
     ptable, is_regular = make_ptable()
 
     # colorize full table
-    colors, indices_selected = _colorize(elem_select)
+    colors, indices_selected = _colorize(elem_select, crop=False)
 
     atomic_numbers, symbols, names = ptable.T[0:3]
 
