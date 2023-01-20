@@ -56,13 +56,12 @@ defaults:
       search: true
       tooltip: true
 
-sidebars:
-- home_sidebar
-permalink: pretty
+sidebars: [home_sidebar]
+baseurl: /moseley/
 
 plugins:
     - jekyll-remote-theme
     
 remote_theme: fastai/nbdev-jekyll-theme 
-baseurl: /moseley/
+
 

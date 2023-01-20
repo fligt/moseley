@@ -32,7 +32,9 @@
             });
 
             // activate menu items where href is matching to current page
-            $("#mysidebar a[href='" + location.pathname.match(/\/([^\/]*)$/)[1] + "']")
+            // fligt replaced the regex match with liquid url 
+            //$("#mysidebar a[href='" + location.pathname.match(/(\/[^\/]*)$/)[1] + "']")
+            $("#mysidebar a[href='{{ page.url | relative_url }}'")
                 .parents('li').addClass('active')
                 .parents('ul').css('display', 'block');
         });
