@@ -60,5 +60,9 @@ sidebars:
 - home_sidebar
 permalink: pretty
 
-theme: jekyll-theme-cayman
+plugins:
+    - jekyll-remote-theme
+    
+remote_theme: fastai/nbdev-jekyll-theme 
 baseurl: /moseley/
+
