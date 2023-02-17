@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to moseley",
+    "section": "",
+    "text": "The widespread use of point-and-shoot hand held x-ray fluorescence (XRF) instruments in cultural heritage research, would suggest that it is easy enough for anyone to find out the elemental composition of materials. Alas, due to myriads of emission energies, escape peaks and other nuisances, reliable interpretation of x-ray fluorescence spectra is actually hard. If you are not yet deterred, just read the Handheld XRF in Cultural Heritage - A practical workbook for conservators with many, many examples of spectra that was recently made available on-line by the Getty Conservation Institute.\nMy take on this as a physicist and a python programmer is that instead of learning from data directly (i.e. staring at measured spectra), a nicer route to insight exists. Due to huge efforts and advances of the open source scientific computing community it is nowadays possible to install readily available python packages and create physics simulations and visualizations with a few lines of computer code. Once you understand why certain patterns of peaks appear, it becomes much more easy to interpret XRF spectra reliably."
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "Welcome to moseley",
+    "section": "Installation",
+    "text": "Installation\n\n\n\n\n\nIf you would like to adapt this plot to your own needs, for instance to to see what happens if you change beam energy, you can install this package yourself.\n$ pip install moseley"
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "Welcome to moseley",
+    "section": "Usage",
+    "text": "Usage\nSee documentation: https://fligt.github.io/moseley/"
+  },
+  {
+    "objectID": "mplot.html",
+    "href": "mplot.html",
+    "title": "Moseley’s law",
+    "section": "",
+    "text": "An x-ray fluorescence spectrum for a specific pure element contains a characteristic combination of peaks of different heights at different energies. It follows that for a material that contains a mixture of different elements a spectrum with a complex pattern of peaks will arise. Inferring a material composition from a measured XRF spectrum amounts to attributing peaks to elements.\n\n\nHenry Moseley (image: wikipedia)\n\nIn 1913-1914 the young British physicist Henry Moseley discovered a beautiful simple regular pattern that relates the energy of the (typically) strongest peak in a pure element spectrum (called the \\(K_{\\alpha}\\) line) to the atomic number (\\(Z\\)).\n\\[ E_{K_{\\alpha}} = 10.2 \\left( Z - 1 \\right)^2 \\]\nWhere the energy is expressed in units of electron volt \\([eV]\\). Suppose now that you observe a large peak in a spectrum at a given energy but it is unknown which element generated. It is useful now to invert this expression to calculate the atomic number of the prime suspect chemical element that possibly emitted the peak.\n\\[ Z = \\sqrt{\\frac{E_{K_{\\alpha}}}{10.2}} + 1 \\]\nNote that that we have simple a square root function here. As a practical numerical example, suppose now we measure an XRF spectrum for a sample of a pure (for the sake of this exercise) unknown element (See figure x). The largest peak in this spectrum has an energy of 6.40 keV = 6400 eV. Rounding off one can calculate\n\\[ Z = \\sqrt{\\frac{6400}{10.2}} + 1 = 26.05 \\approx 26 \\rightarrow \\rm{Fe} \\]\nIn the periodic table it is found that this atomic number corresponds to iron (Fe), which indeed is the element used for the measurement.\n\n\n/home/runner/work/moseley/moseley/moseley/mplot.py:189: SyntaxWarning: \"is\" with a literal. Did you mean \"==\"?\n  if weight_list is 'equal':\n\n\n\nmos.ptable_plot(['Fe'])"
+  },
+  {
+    "objectID": "mplot.html#creating-the-moseley-plot",
+    "href": "mplot.html#creating-the-moseley-plot",
+    "title": "Moseley’s law",
+    "section": "Creating the Moseley plot",
+    "text": "Creating the Moseley plot\nIn order to develop a further intuition of XRF physics beyond Moseley’s law, it is instructive to create a plot with simulations of theoretical pure element XRF spectra for the complete periodic system.\nI am not an expert in XRF physics. And therefore I am not able to calculate or look up the complex spectral patterns by myself. However, thanks to the open source scientific community advanced python packages are readily available from the python package index to simulate spectra. An authoritative resource for simulating XRF physics is fisx, the periodic table can be consulted using mendeleev, plotting and peak finding can be done with scipy and matplotlib.\nIn order to create your own simulation plots, install the moseley package (see installation instructions above), and execute the following commands in a Jupyter notebook:\n\nimport moseley as mos\n\n\nmy_elements = ['Ca', 'Cl', 'S', 'Fe', 'Cu', 'K', 'Zn']\n\n\nmos.ptable_plot(my_elements)\n\n\n\n\nYou can now inspect the spectra for the selected elements and x-ray tube energy.\n\nfig = mos.moseley_plot(tube_keV=25, elem_select=my_elements)\n\n\n\n\nThe spectra shown here are idealized simulations. There are several reasons why some peaks might not be visible, and additional false (sum and escape) peaks might show up. For now, this is outside the scope of this simulation."
+  },
+  {
+    "objectID": "mplot.html#api",
+    "href": "mplot.html#api",
+    "title": "Moseley’s law",
+    "section": "API",
+    "text": "API\n\nsource\n\nmoseley_plot\n\n moseley_plot (tube_keV, elem_select=None, weight_list='equal', law=True,\n               figname=None)\n\nGenerate Moseley plot of simulated xrf spectra for periodic table.\nArgs: elem_select (list of str): List of symbols of elements. All selected elements will be highlighted with bright colors and peak labels. tube_keV (float or list of floats): X-ray tube energy in keV. weight_list (list of floats): X-ray tube intensities. Optional, defaults to ‘equal’.\nExample: moseley_plot(tube_keV=40, elem_select=[‘Fe’, ‘Ca’]);\nReturns: matplotlib figure\n\nsource\n\n\nmoseley_law\n\n moseley_law (E_K_alpha_keV)\n\nSquare root form of Moseley’s law.\nArgs: E_K_alfa_keV (float or array of floats): K_alpha peak energy in keV\nExample: moseley_law(6.40)\nReturns: Z (float or array of floats): predicted atomic number\n\nsource\n\n\nXFluo\n\n XFluo (element, tube_keV, weight_list='equal', std=0.01, min_prom=0.001)\n\nCreate an annotated x-ray fluorescence spectrum object.\nArgs: element (str): Chemical symbol e.g ‘Fe’ tube_keV (float or list of floats): X-ray tube energies in keV. For a poly chromatic X-ray tube multiple energies can be provided.\nweight_list (list of numbers): X-ray energy weights. Corresponding to energy_list\nstd (number): Peak width used for plotting min_prom (number): Minimal peak prominance. Only peaks higher then prominance are labeled.\nExample: xf = XFluo(‘Fe’, [20, 40])\nReturns: XRF annotated spectrum object\n\nsource\n\n\nptable_plot\n\n ptable_plot (elem_select=None, figname=None)\n\nCreate periodic table plot with selected elements colorized.\n\nsource\n\n\nmake_ptable\n\n make_ptable ()\n\nMake numpy array with element attributes for regular part of the periodic table.\nThe irregular Lanthanides and Actinides series are rare, so we do not plot them"
+  }
+]

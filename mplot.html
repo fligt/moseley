@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>moseley - Moseley’s law</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="moseley - Moseley’s law">
+<meta property="og:description" content="An x-ray fluorescence spectrum for a specific pure element contains a characteristic combination of peaks of different heights at different energies.">
+<meta property="og:site-name" content="moseley">
+<meta name="twitter:title" content="moseley - Moseley’s law">
+<meta name="twitter:description" content="An x-ray fluorescence spectrum for a specific pure element contains a characteristic combination of peaks of different heights at different energies.">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">moseley</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fligt/moseley"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Moseley’s law</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Welcome to moseley</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mplot.html" class="sidebar-item-text sidebar-link active">Moseley’s law</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#from-peak-energies-to-the-periodic-table" id="toc-from-peak-energies-to-the-periodic-table" class="nav-link active" data-scroll-target="#from-peak-energies-to-the-periodic-table">From peak energies to the Periodic Table</a></li>
+  <li><a href="#creating-the-moseley-plot" id="toc-creating-the-moseley-plot" class="nav-link" data-scroll-target="#creating-the-moseley-plot">Creating the Moseley plot</a></li>
+  <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api">API</a>
+  <ul class="collapse">
+  <li><a href="#moseley_plot" id="toc-moseley_plot" class="nav-link" data-scroll-target="#moseley_plot">moseley_plot</a></li>
+  <li><a href="#moseley_law" id="toc-moseley_law" class="nav-link" data-scroll-target="#moseley_law">moseley_law</a></li>
+  <li><a href="#xfluo" id="toc-xfluo" class="nav-link" data-scroll-target="#xfluo">XFluo</a></li>
+  <li><a href="#ptable_plot" id="toc-ptable_plot" class="nav-link" data-scroll-target="#ptable_plot">ptable_plot</a></li>
+  <li><a href="#make_ptable" id="toc-make_ptable" class="nav-link" data-scroll-target="#make_ptable">make_ptable</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/fligt/moseley/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Moseley’s law</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="from-peak-energies-to-the-periodic-table" class="level2">
+<h2 class="anchored" data-anchor-id="from-peak-energies-to-the-periodic-table">From peak energies to the Periodic Table</h2>
+<p>An x-ray fluorescence spectrum for a specific pure element contains a characteristic combination of peaks of different heights at different energies. It follows that for a material that contains a mixture of different elements a spectrum with a complex pattern of peaks will arise. Inferring a material composition from a measured XRF spectrum amounts to attributing peaks to elements.</p>
+<div id="fig">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/d/dd/Henry_Moseley.jpg" class="img-fluid"></p>
+<p>Henry Moseley (image: wikipedia)</p>
+</div>
+<p>In 1913-1914 the young British physicist <a href="https://en.wikipedia.org/wiki/Moseley%27s_law">Henry Moseley</a> discovered a beautiful simple regular pattern that relates the energy of the (typically) strongest peak in a pure element spectrum (called the <span class="math inline">\(K_{\alpha}\)</span> line) to the atomic number (<span class="math inline">\(Z\)</span>).</p>
+<p><span class="math display">\[ E_{K_{\alpha}} = 10.2 \left( Z - 1 \right)^2 \]</span></p>
+<p>Where the energy is expressed in units of electron volt <span class="math inline">\([eV]\)</span>. Suppose now that you observe a large peak in a spectrum at a given energy but it is unknown which element generated. It is useful now to invert this expression to calculate the atomic number of the prime suspect chemical element that possibly emitted the peak.</p>
+<p><span class="math display">\[ Z = \sqrt{\frac{E_{K_{\alpha}}}{10.2}} + 1 \]</span></p>
+<p>Note that that we have simple a square root function here. As a practical numerical example, suppose now we measure an XRF spectrum for a sample of a pure (for the sake of this exercise) unknown element (See figure x). The largest peak in this spectrum has an energy of 6.40 keV = 6400 eV. Rounding off one can calculate</p>
+<p><span class="math display">\[ Z = \sqrt{\frac{6400}{10.2}} + 1 = 26.05 \approx 26 \rightarrow \rm{Fe} \]</span></p>
+<p>In the periodic table it is found that this atomic number corresponds to iron (Fe), which indeed is the element used for the measurement.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/runner/work/moseley/moseley/moseley/mplot.py:189: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if weight_list is 'equal':</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mos.ptable_plot([<span class="st">'Fe'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="00_mplot_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="creating-the-moseley-plot" class="level2">
+<h2 class="anchored" data-anchor-id="creating-the-moseley-plot">Creating the Moseley plot</h2>
+<p>In order to develop a further intuition of XRF physics beyond Moseley’s law, it is instructive to create a plot with simulations of theoretical pure element XRF spectra for the complete periodic system.</p>
+<p>I am not an expert in XRF physics. And therefore I am not able to calculate or look up the complex spectral patterns by myself. However, thanks to the open source scientific community advanced python packages are readily available from the python package index to simulate spectra. An authoritative resource for simulating XRF physics is <code>fisx</code>, the periodic table can be consulted using <code>mendeleev</code>, plotting and peak finding can be done with <code>scipy</code> and <code>matplotlib</code>.</p>
+<p>In order to create your own simulation plots, install the <code>moseley</code> package (see installation instructions above), and execute the following commands in a Jupyter notebook:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> moseley <span class="im">as</span> mos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_elements <span class="op">=</span> [<span class="st">'Ca'</span>, <span class="st">'Cl'</span>, <span class="st">'S'</span>, <span class="st">'Fe'</span>, <span class="st">'Cu'</span>, <span class="st">'K'</span>, <span class="st">'Zn'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mos.ptable_plot(my_elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="00_mplot_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>You can now inspect the spectra for the selected elements and x-ray tube energy.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> mos.moseley_plot(tube_keV<span class="op">=</span><span class="dv">25</span>, elem_select<span class="op">=</span>my_elements)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="00_mplot_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The spectra shown here are idealized simulations. There are several reasons why some peaks might not be visible, and additional false (sum and escape) peaks might show up. For now, this is outside the scope of this simulation.</p>
+</section>
+<section id="api" class="level2">
+<h2 class="anchored" data-anchor-id="api">API</h2>
+<hr>
+<p><a href="https://github.com/fligt/moseley/blob/master/cronomaxrf/mplot.py#L325" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="moseley_plot" class="level3">
+<h3 class="anchored" data-anchor-id="moseley_plot">moseley_plot</h3>
+<blockquote class="blockquote">
+<pre><code> moseley_plot (tube_keV, elem_select=None, weight_list='equal', law=True,
+               figname=None)</code></pre>
+</blockquote>
+<p>Generate Moseley plot of simulated xrf spectra for periodic table.</p>
+<p>Args: elem_select (list of str): List of symbols of elements. All selected elements will be highlighted with bright colors and peak labels. tube_keV (float or list of floats): X-ray tube energy in keV. weight_list (list of floats): X-ray tube intensities. Optional, defaults to ‘equal’.</p>
+<p>Example: moseley_plot(tube_keV=40, elem_select=[‘Fe’, ‘Ca’]);</p>
+<p>Returns: matplotlib figure</p>
+<hr>
+<p><a href="https://github.com/fligt/moseley/blob/master/cronomaxrf/mplot.py#L307" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="moseley_law" class="level3">
+<h3 class="anchored" data-anchor-id="moseley_law">moseley_law</h3>
+<blockquote class="blockquote">
+<pre><code> moseley_law (E_K_alpha_keV)</code></pre>
+</blockquote>
+<p>Square root form of Moseley’s law.</p>
+<p>Args: E_K_alfa_keV (float or array of floats): K_alpha peak energy in keV</p>
+<p>Example: moseley_law(6.40)</p>
+<p>Returns: Z (float or array of floats): predicted atomic number</p>
+<hr>
+<p><a href="https://github.com/fligt/moseley/blob/master/cronomaxrf/mplot.py#L161" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="xfluo" class="level3">
+<h3 class="anchored" data-anchor-id="xfluo">XFluo</h3>
+<blockquote class="blockquote">
+<pre><code> XFluo (element, tube_keV, weight_list='equal', std=0.01, min_prom=0.001)</code></pre>
+</blockquote>
+<p>Create an annotated x-ray fluorescence spectrum object.</p>
+<p>Args: element (str): Chemical symbol e.g ‘Fe’ tube_keV (float or list of floats): X-ray tube energies in keV. For a poly chromatic X-ray tube multiple energies can be provided.<br>
+weight_list (list of numbers): X-ray energy weights. Corresponding to energy_list<br>
+std (number): Peak width used for plotting min_prom (number): Minimal peak prominance. Only peaks higher then prominance are labeled.</p>
+<p>Example: xf = XFluo(‘Fe’, [20, 40])</p>
+<p>Returns: XRF annotated spectrum object</p>
+<hr>
+<p><a href="https://github.com/fligt/moseley/blob/master/cronomaxrf/mplot.py#L123" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="ptable_plot" class="level3">
+<h3 class="anchored" data-anchor-id="ptable_plot">ptable_plot</h3>
+<blockquote class="blockquote">
+<pre><code> ptable_plot (elem_select=None, figname=None)</code></pre>
+</blockquote>
+<p>Create periodic table plot with selected elements colorized.</p>
+<hr>
+<p><a href="https://github.com/fligt/moseley/blob/master/cronomaxrf/mplot.py#L32" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="make_ptable" class="level3">
+<h3 class="anchored" data-anchor-id="make_ptable">make_ptable</h3>
+<blockquote class="blockquote">
+<pre><code> make_ptable ()</code></pre>
+</blockquote>
+<p>Make numpy array with element attributes for regular part of the periodic table.</p>
+<p>The irregular Lanthanides and Actinides series are rare, so we do not plot them</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome to moseley</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">2023 Rijkserfgoedlaboratorium Amsterdam</div>
+  </div>
+</footer>
+
+
+
+</body></html>
