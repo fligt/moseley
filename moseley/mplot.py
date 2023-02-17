@@ -267,7 +267,7 @@ class XFluo:
         ax.fill_between(x, y, y2=Z, color=color, alpha=0.3)
         ax.plot(x, y, color=color)
         
-        if peak_labels is not 'none': 
+        if peak_labels != 'none': 
             ax.scatter(px, py, color=color)
             for e in px: 
                 ax.axvline(e, color=color, alpha=0.3)
@@ -277,7 +277,7 @@ class XFluo:
         
         
         # peak labels 
-        if peak_labels is 'full': 
+        if peak_labels == 'full': 
             xy_list = list(zip(px, py))
             for i, s in enumerate(self.peak_excits): 
                 ax.annotate(f'{self.element}\n{s}\n{self.peak_energies[i]:.3f}keV',
@@ -286,7 +286,7 @@ class XFluo:
                             color=color, 
                             bbox=dict(boxstyle="round", alpha=0, edgecolor='white', facecolor='white')) 
                 
-        elif peak_labels is 'simple': 
+        elif peak_labels == 'simple': 
             xy_list = list(zip(px, py))
             for i, s in enumerate(self.peak_excits): 
                 ax.annotate(f'{self.element}',
@@ -295,7 +295,7 @@ class XFluo:
                             color=color, 
                             bbox=dict(boxstyle="round", alpha=0, edgecolor='white', facecolor='white'))   
                 
-        elif peak_labels is 'none': 
+        elif peak_labels == 'none': 
             pass
         
         # seems to slow down plotting 
