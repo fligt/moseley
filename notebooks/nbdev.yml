@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "moseley"
+  site-url: "https://fligt.github.io/moseley"
+  description: "Simulating XRF spectra to better understand them"
+  repo-branch: master
+  repo-url: "https://github.com/fligt/moseley"
