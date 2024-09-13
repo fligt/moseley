@@ -186,7 +186,7 @@ class XFluo:
         sorting = np.argsort(energy_list)
         energy_list = np.array(energy_list)[sorting] # need to make sure last energy is highest ? 
         
-        if weight_list is 'equal': 
+        if weight_list == 'equal': 
             weight_list = np.ones_like(energy_list) 
             
         weight_list = np.array(weight_list)[sorting]
@@ -228,7 +228,8 @@ class XFluo:
         self.peak_intensities = self.total_spectrum[peaks] 
         
         # find indices of nearest excitations 
-        nearest = np.argmin((self.lines_df['energy'][:, None] - self.peak_energies[None, :])**2, axis=0)  
+        # corrected bug with .values 
+        nearest = np.argmin((self.lines_df['energy'].values[:, None] - self.peak_energies[None, :])**2, axis=0)  
         self.peak_excits = list(self.lines_df.index[nearest])
         
         
