@@ -234,7 +234,7 @@ class XFluo:
         
         
         
-    def plot(self, ax=None, color=None, figsize=[12, 5], up=False, mos=False, peak_labels='simple'):
+    def plot(self, ax=None, color=None, figsize=[12, 5], tight_layout=True, up=False, mos=False, peak_labels='simple'):
         '''Plot an xrf spectrum'''
 
         if ax is None: 
@@ -301,7 +301,8 @@ class XFluo:
         
         # seems to slow down plotting 
         #or not? 
-        fig.tight_layout()
+        if tight_layout:
+            fig.tight_layout()
             
         # (self.peak_energies[i], self.peak_intensities[i]),           
 
