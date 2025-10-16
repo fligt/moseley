@@ -5,7 +5,7 @@
 # %% auto 0
 __all__ = ['PeakPatternAtlas', 'colorize', 'PeriodicTable']
 
-# %% ../notebooks/02_a-peak-pattern-atlas.ipynb 10
+# %% ../notebooks/02_a-peak-pattern-atlas.ipynb 9
 # Periodic Table 
 import mendeleev as mv 
 from mendeleev.fetch import fetch_table  
@@ -20,47 +20,76 @@ import matplotlib.patches as mpatches
 import matplotlib.colors as mcolors 
 
 
-# %% ../notebooks/02_a-peak-pattern-atlas.ipynb 11
+# %% ../notebooks/02_a-peak-pattern-atlas.ipynb 10
 class PeakPatternAtlas():
     '''Create a PeakPatternAtlas instance. '''
 
-    def __init__(self, verbose=True): 
+    def __init__(self, EOI=None, excitation_energy_keV=25, verbose=True):
+        '''Compute Peak Pattern Atlas for `excitation_energy_keV=25`.'''
 
-        self.table = mos.PeriodicTable()
+        self.table = mos.PeriodicTable(EOI=EOI)
 
         self.EOI = [element for element in self.table.EOI if not '#'in element]
+        
+        self.element_xrf_list = [] 
+        self.ptrn_dict_list = []
+
+        for i, element in enumerate(self.EOI):     
+            if verbose: 
+                print(f'Please wait while computing spectral pattern for element {i+1}/{len(self.EOI)}...', end='\r') 
+
+                element_xrf = mos.ElementXRF(element, excitation_energy_keV=excitation_energy_keV)
+                ptrn_dict = element_xrf.get_pattern_dict()
+
+                self.element_xrf_list.append(element_xrf)
+                self.ptrn_dict_list.append(ptrn_dict)
+                
+        #self.element_xrf_list = [mos.ElementXRF(elem, excitation_energy_keV=excitation_energy_keV) for elem in self.EOI] 
+        #self.ptrn_dict_list = [element_xrf.get_pattern_dict() for element_xrf in self.element_xrf_list]
         if verbose: 
-            print(f'Please wait while computing spectral patterns for {len(self.EOI)} elements...')      
-        self.element_xrf_list = [mos.ElementXRF(elem, excitation_energy_keV=25) for elem in self.EOI] 
-        self.ptrn_dict_list = [element_xrf.get_pattern_dict() for element_xrf in self.element_xrf_list]
-        if verbose: 
-            print('Ready building Peak Pattern Atlas!') 
+            print('Ready building Peak Pattern Atlas!                                                                   ') 
       
 
-    def plot(self, ax=None): 
+    def plot_atlas(self, order='alpha', moseley=False, colorize_elements='all', ax=None): 
 
         if ax is None: 
             fig, ax = plt.subplots(figsize=[15, 7])
+            ax.set_title('Peak Pattern Atlas')
+
+        ptrn_dict_list = _sort_ptrn_list(self.ptrn_dict_list, order=order)
         
-        n_ptrns = len(self.ptrn_dict_list)
-        
+        n_ptrns = len(ptrn_dict_list)
+
+        yticks = []
         ytick_labels = []
-        for i, ptrn_dict in enumerate(self.ptrn_dict_list): 
+        for i, ptrn_dict in enumerate(ptrn_dict_list): 
             elem = ptrn_dict['elem']
             name = ptrn_dict['name']
             Z = ptrn_dict['atomic_number'] 
-            color = self.table.element_colors_dict[elem]
+            
+            if colorize_elements == 'all':
+                color = self.table.element_colors_dict[elem]
+            elif elem in colorize_elements: 
+                color = self.table.element_colors_dict[elem]
+            else: 
+                color = None
         
             ytick_labels.append(f'{name} ({Z})')
-            
-            mos.plot_pattern(ptrn_dict, ax=ax, offset=i, color=color) 
+
+            if moseley: 
+                offset = Z 
+            else: 
+                offset = i 
+                
+            yticks.append(offset) 
+            mos.plot_pattern(ptrn_dict, ax=ax, offset=offset, color=color) 
         
-        ax.set_yticks(np.arange(n_ptrns))
-        ax.set
+        ax.set_yticks(yticks) 
         ax.set_yticklabels(ytick_labels)
         ax.set_xlabel('Energy (keV)')
         ax.set_xlim(xmin=0)
-        ax.set_xticks(range(25), minor=True);    
+        ax.set_xticks(range(25), minor=True);
+    
 
         return ax 
 
@@ -134,8 +163,25 @@ def _draw_box(ax, element_attrs, edgecolor=None, facecolor=None):
                 va='center', ha='center', fontsize=5)
 
 
+def _sort_ptrn_list(ptrn_dict_list, order='alpha'): 
+    '''Utility function to sort ptrn_dict_list in 'alpha' or 'Z' order. 
+    
+    Returns: sorted_ptrn_list '''
+
+    if order == 'alpha': 
+        alpha_list = [ptrn['alpha_keV'] for ptrn in ptrn_dict_list]
+        idxs = np.argsort(alpha_list)
+    elif order == 'Z': 
+        Z_list = [ptrn['atomic_number'] for ptrn in ptrn_dict_list] 
+        idxs = np.argsort(Z_list)
+        
+    sorted_ptrn_list = [ptrn_dict_list[i] for i in idxs]  
+        
+    return sorted_ptrn_list
+
+
 class PeriodicTable(): 
-    '''Create a periodic table of elements.'''
+    '''Create a periodic table of elements. '''
     
     
     def __init__(self, EOI=None): 
@@ -160,7 +206,7 @@ class PeriodicTable():
         self.element_colors_dict = colorize(self.ptable_regular) 
 
 
-    def plot(self, ax=None, figname=None): 
+    def plot_table(self, ax=None, figname=None): 
         '''Create periodic table plot with selected elements colorized.'''
     
         if ax is None: 
@@ -173,9 +219,8 @@ class PeriodicTable():
         for i, element_attrs in enumerate(self.ptable_regular.values): 
     
             atomic_number, symbol, name, x, y = element_attrs 
-    
-            #facecolor = colorize(symbol)
             facecolor = self.element_colors_dict[symbol] 
+            
             if symbol in self.EOI: 
                 edgecolor = 'r' 
             else: 
