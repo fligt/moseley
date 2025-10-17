@@ -22,7 +22,7 @@ class ElementXRF():
     '''
     
     def __init__(self, element, excitation_energy_keV=None, tube_anode='Rh', x_keVs=None, std=0.01, min_prom=0.001): 
-        
+        '''Create elemental xrf spectrum object. '''
 
         ### LINES ### 
 
