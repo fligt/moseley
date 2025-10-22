@@ -24,7 +24,7 @@ import matplotlib.colors as mcolors
 class PeakPatternAtlas():
     '''Create a PeakPatternAtlas instance. '''
 
-    def __init__(self, EOI=None, excitation_energy_keV=25, verbose=True):
+    def __init__(self, EOI=None, excitation_energy_keV=25, x_keVs=None, verbose=True):
         '''Compute Peak Pattern Atlas for `excitation_energy_keV=25`.'''
 
         self.table = mos.PeriodicTable(EOI=EOI)
@@ -38,7 +38,7 @@ class PeakPatternAtlas():
             if verbose: 
                 print(f'Please wait while computing spectral pattern for element {i+1}/{len(self.EOI)}...', end='\r') 
 
-                element_xrf = mos.ElementXRF(element, excitation_energy_keV=excitation_energy_keV)
+                element_xrf = mos.ElementXRF(element, excitation_energy_keV=excitation_energy_keV, x_keVs=x_keVs)
                 ptrn_dict = element_xrf.get_pattern_dict()
 
                 self.element_xrf_list.append(element_xrf)
