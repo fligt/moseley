@@ -258,15 +258,19 @@ def get_attenuation(element, emission_energy_keV, excitation_energy_keV='rhodium
         
     excitation_energy = excitation_energy_keV * 1000 
     emission_energy = emission_energy_keV * 1000 
-    
-    mu_excit = xraydb.mu_elam(element, excitation_energy)
-    mu_emiss = xraydb.mu_elam(element, emission_energy)
 
-    # mathematically the thickness factor is defined as: 
-    rho = xraydb.atomic_density(element)
-    thickness_factor = 1 - np.exp(-rho * h_mm * 0.1 * (mu_excit + mu_emiss))
+    if emission_energy < 150: # eV 
+        attenuation = 0 
+        
+    else: 
+        mu_excit = xraydb.mu_elam(element, excitation_energy)
+        mu_emiss = xraydb.mu_elam(element, emission_energy)
     
-    attenuation = (mu_excit / (mu_excit + mu_emiss)) * thickness_factor 
+        # mathematically the thickness factor is defined as: 
+        rho = xraydb.atomic_density(element)
+        thickness_factor = 1 - np.exp(-rho * h_mm * 0.1 * (mu_excit + mu_emiss))
+        
+        attenuation = (mu_excit / (mu_excit + mu_emiss)) * thickness_factor 
 
     return attenuation
 
