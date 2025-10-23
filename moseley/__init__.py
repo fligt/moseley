@@ -1,4 +1,4 @@
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 
 from .moseley_law import *
 from .xrf_physics import * 
