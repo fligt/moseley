@@ -5,7 +5,7 @@
 # %% auto 0
 __all__ = ['ElementXRF', 'gaussian_convolve', 'find_peaks', 'plot_pattern', 'get_attenuation']
 
-# %% ../notebooks/01_theoretical-peak-patterns.ipynb 9
+# %% ../notebooks/01_theoretical-peak-patterns.ipynb 10
 import numpy as np 
 import xraydb 
 import pandas as pd 
@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import mendeleev
 
-# %% ../notebooks/01_theoretical-peak-patterns.ipynb 10
+# %% ../notebooks/01_theoretical-peak-patterns.ipynb 11
 class ElementXRF(): 
     '''Computes fluorescence emission line energies and intensities for `element`. 
     
@@ -59,7 +59,6 @@ class ElementXRF():
             jump_coeff = (jump_ratio - 1) / jump_ratio # see Volker Thomsen 
 
             attenuation = get_attenuation(element, emission_energy_keV, excitation_energy_keV, h_mm=h_mm)
-            #print(f'{name}: {energy}; jump_coeff: {jump_coeff:.03f}; fluo_yield: {fluo_yield}')
 
             # multiplying edge jump coefficient, transition probability and fluorescence yield... 
             intensity = jump_coeff * probability * fluo_yield * attenuation
@@ -90,7 +89,17 @@ class ElementXRF():
         self.spectrum_xy = gaussian_convolve(line_energies, line_intensities, x_keVs=x_keVs, std=std) 
         self.peaks_xy = find_peaks(*self.spectrum_xy, min_prom=min_prom) 
 
-    def plot_spectrum(self, ax=None, edgecolor=None, facecolor=None, vlines_colors=None, xlim=[0, 25]): 
+        # find nearest line Siegbahn peak labels 
+        peaks_x, peaks_y = self.peaks_xy.T
+        
+        self.peak_labels = []
+        for peak_keV in peaks_x:     
+            line_idx = int(np.argmin((self.lines_table['energy'].values   - peak_keV)**2))
+            line_label = self.lines_table['name'].values[line_idx]
+            self.peak_labels.append(line_label)
+        
+
+    def plot_spectrum(self, ax=None, edgecolor=None, facecolor=None, vlines_colors=None, xlim=[0, 25], peak_labels=True): 
         
         if edgecolor is None: 
             edgecolor = cm.tab20(0)
@@ -106,6 +115,12 @@ class ElementXRF():
         ax.plot(x, y, color=edgecolor, zorder=9)
         ax.scatter(peaks_x[0], peaks_y[0], marker='s', facecolor=facecolor, edgecolor=edgecolor, zorder=10)  
         ax.scatter(peaks_x[1:], peaks_y[1:], marker='o', facecolor=facecolor, edgecolor=edgecolor, zorder=10)
+
+        # add peak labels
+        if peak_labels: 
+            for label, xy in zip(self.peak_labels, self.peaks_xy): 
+                ax.annotate(label, xy, xytext=(0, 5), textcoords="offset points",
+                            va="bottom", ha="center") 
     
         # need to interpolate spectrum to add vlines 
     
@@ -119,6 +134,7 @@ class ElementXRF():
         ax.set_title(f'Theoretical X-Ray Fluorescence for {self.element}') 
         ax.set_xlabel('Energy (keV)')
         ax.set_xlim(xlim)
+        ax.set_ylim(ymax=1.1 * y.max())
         
         return ax 
 
@@ -137,6 +153,7 @@ class ElementXRF():
                      'alpha_keV': alpha_keV, 
                      'name': name, 
                      'peaks_xy': self.peaks_xy, 
+                     'peak_labels': self.peak_labels, 
                      'alpha_escape_keV': alpha_escape_keV} 
         
         return ptrn_dict
