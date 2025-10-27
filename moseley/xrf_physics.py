@@ -141,35 +141,6 @@ class ElementXRF():
         
         return ptrn_dict
     
-#def get_element_spectra(elements, x_keVs, excitation_energy_keV): 
-#   '''Compute theoretical emission spectrum for multiple elements. 
-#   
-#   Sorts elements according to largest (alpha) peak. Based on xraydb. 
-#   
-#   Returns: elements, element_spectra
-#   '''
-#
-#   n_channels = len(x_keVs)
-#   n_elements = len(elements)
-#
-#   element_spectra = np.zeros([n_elements, n_channels]) 
-#
-#   for i, elem in enumerate(elements): 
-#       element_spectra[i] = get_element_spectrum(elem, excitation_energy_keV, x_keVs=x_keVs)
-#
-#       # normalize
-#       element_spectra[i] = element_spectra[i] / element_spectra[i].max()
-#
-#
-#   # sort according to energy of largest (=alpha) peak
-#   alpha_idxs = np.argmax(element_spectra, axis=1)
-#   alpha_order = np.argsort(alpha_idxs) 
-#
-#   elements = [elements[i] for i in alpha_order]
-#   element_spectra = element_spectra[alpha_order]
-#   
-#   return elements, element_spectra 
-#
 
 def gaussian_convolve(peak_energies, peak_intensities, x_keVs=None, std=0.01): 
     '''Convolves line spectrum defined by `peak_energies` and `peak_intensities` 
@@ -273,4 +244,5 @@ def get_attenuation(element, emission_energy_keV, excitation_energy_keV='rhodium
         attenuation = (mu_excit / (mu_excit + mu_emiss)) * thickness_factor 
 
     return attenuation
+
 
