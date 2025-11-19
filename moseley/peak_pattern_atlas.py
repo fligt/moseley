@@ -39,7 +39,7 @@ class PeakPatternAtlas():
                 print(f'Please wait while computing spectral pattern for element {i+1}/{len(self.EOI)}...', end='\r') 
 
                 element_xrf = mos.ElementXRF(element, excitation_energy_keV=excitation_energy_keV, x_keVs=x_keVs)
-                ptrn_dict = element_xrf.get_pattern_dict()
+                ptrn_dict = element_xrf.ptrn_dict
 
                 self.element_xrf_list.append(element_xrf)
                 self.ptrn_dict_list.append(ptrn_dict)

@@ -89,6 +89,10 @@ class ElementXRF():
         self.spectrum_xy = gaussian_convolve(line_energies, line_intensities, x_keVs=x_keVs, std=std) 
         self.peaks_xy = find_peaks(*self.spectrum_xy, min_prom=min_prom) 
 
+        # sort high to low (just in case) 
+        sort_idxs = np.argsort(self.peaks_xy[:, 1])[::-1]
+        self.peaks_xy = self.peaks_xy[sort_idxs]
+
         # find nearest line Siegbahn peak labels 
         peaks_x, peaks_y = self.peaks_xy.T
         
@@ -97,6 +101,26 @@ class ElementXRF():
             line_idx = int(np.argmin((self.lines_table['energy'].values   - peak_keV)**2))
             line_label = self.lines_table['name'].values[line_idx]
             self.peak_labels.append(line_label)
+
+        # create element pattern dict 
+
+        alpha_keV = float(self.peaks_xy[0][0])
+        alpha_escape_keV = alpha_keV - 1.74  # Silicon detector escape energy shift 
+        
+        # element   
+        elem = self.element
+        name = mendeleev.element(elem).name
+        atomic_number = mendeleev.element(elem).atomic_number
+        
+        self.ptrn_dict = {
+            'elem': elem,  
+            'atomic_number': atomic_number, 
+            'alpha_keV': alpha_keV, 
+            'name': name, 
+            'peaks_xy': self.peaks_xy, 
+            'peak_labels': self.peak_labels, 
+            'alpha_escape_keV': alpha_escape_keV} 
+        
         
 
     def plot_spectrum(self, ax=None, edgecolor=None, facecolor=None, vlines_colors=None, xlim=[0, 25], peak_labels=True): 
@@ -138,26 +162,7 @@ class ElementXRF():
         
         return ax 
 
-    def get_pattern_dict(self): 
-    
-        alpha_keV = float(self.peaks_xy[0][0])
-        alpha_escape_keV = alpha_keV - 1.74  # Silicon detector escape energy shift 
-        
-        # element   
-        elem = self.element
-        name = mendeleev.element(elem).name
-        atomic_number = mendeleev.element(elem).atomic_number
-        
-        ptrn_dict = {'elem': elem,  
-                     'atomic_number': atomic_number, 
-                     'alpha_keV': alpha_keV, 
-                     'name': name, 
-                     'peaks_xy': self.peaks_xy, 
-                     'peak_labels': self.peak_labels, 
-                     'alpha_escape_keV': alpha_escape_keV} 
-        
-        return ptrn_dict
-    
+
 
 def gaussian_convolve(peak_energies, peak_intensities, x_keVs=None, std=0.01): 
     '''Convolves line spectrum defined by `peak_energies` and `peak_intensities` 
