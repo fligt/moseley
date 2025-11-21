@@ -5,12 +5,13 @@
 # %% auto 0
 __all__ = ['PeakPatternAtlas', 'colorize', 'PeriodicTable']
 
-# %% ../notebooks/02_a-peak-pattern-atlas.ipynb 9
+# %% ../notebooks/02_a-peak-pattern-atlas.ipynb 11
 # Periodic Table 
 import mendeleev as mv 
 from mendeleev.fetch import fetch_table  
 
 import moseley as mos 
+from . import ElementXRF
 
 # plotting 
 import pandas as pd 
@@ -19,13 +20,15 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches 
 import matplotlib.colors as mcolors 
 
+import holoviews as hv  
 
-# %% ../notebooks/02_a-peak-pattern-atlas.ipynb 10
+
+# %% ../notebooks/02_a-peak-pattern-atlas.ipynb 12
 class PeakPatternAtlas():
     '''Create a PeakPatternAtlas instance. '''
 
-    def __init__(self, EOI=None, excitation_energy_keV=25, x_keVs=None, verbose=True):
-        '''Compute Peak Pattern Atlas for `excitation_energy_keV=25`.'''
+    def __init__(self, EOI=None, excitation_energy_keV=25, x_keVs=None, verbose=True, order='alpha'):
+        '''Compute an ordered Peak Pattern Atlas for `excitation_energy_keV=25`.'''
 
         self.table = mos.PeriodicTable(EOI=EOI)
 
@@ -38,60 +41,65 @@ class PeakPatternAtlas():
             if verbose: 
                 print(f'Please wait while computing spectral pattern for element {i+1}/{len(self.EOI)}...', end='\r') 
 
-                element_xrf = mos.ElementXRF(element, excitation_energy_keV=excitation_energy_keV, x_keVs=x_keVs)
-                ptrn_dict = element_xrf.ptrn_dict
+            element_xrf = ElementXRF(element, excitation_energy_keV=excitation_energy_keV, x_keVs=x_keVs)
+            ptrn_dict = element_xrf.ptrn_dict
 
-                self.element_xrf_list.append(element_xrf)
-                self.ptrn_dict_list.append(ptrn_dict)
-                
-        #self.element_xrf_list = [mos.ElementXRF(elem, excitation_energy_keV=excitation_energy_keV) for elem in self.EOI] 
-        #self.ptrn_dict_list = [element_xrf.get_pattern_dict() for element_xrf in self.element_xrf_list]
+            self.element_xrf_list.append(element_xrf)
+            self.ptrn_dict_list.append(ptrn_dict)
+
+        if order == 'alpha':
+            alphas = [ptrn['alpha_keV'] for ptrn in self.ptrn_dict_list]
+            idxs = np.argsort(alphas)
+            
+        elif order == 'Z': 
+            atomic_numbers = [ptrn['atomic_number'] for ptrn in self.ptrn_dict_list] 
+            idxs = np.argsort(atomic_numbers) 
+
+        self.ptrn_dict_list = [self.ptrn_dict_list[idx] for idx in idxs]  
+        self.element_list = [self.element_xrf_list[idx] for idx in idxs]  
+            
         if verbose: 
-            print('Ready building Peak Pattern Atlas!                                                                   ') 
+            print('Ready building Peak Pattern Atlas!                                   ') 
+
+    def plot_atlas(self): 
+        '''Build a holoviews peak pattern atlas. '''
+    
+        # standard element colors
+        ptable = mos.PeriodicTable()
+        color_dict = mos.colorize(ptable.ptable_regular)
+        
+        scatters = []
+        lines = []
+        yticks = []
+        alphas = []
+        
+        Energy = hv.Dimension('Energy', unit='keV', range=(0, 20))
+        
+        for i, ptrn in enumerate(self.ptrn_dict_list): 
+            # we should avoid recalculation here and use the ppa instance 
+        
+            element = ptrn['elem'] 
+            peaks_x, peaks_y = ptrn['peaks_xy'].T 
+            x_min = float(peaks_x.min()) 
+            x_max =float(peaks_x.max())
+            ptrn_y = np.ones_like(peaks_y) * i
+            
+            alpha_keV = ptrn['alpha_keV'] 
+        
+            color = color_dict[element]
+            
+            scatters.append(hv.Scatter((peaks_x, ptrn_y), Energy, 'Element').opts(size=5, color=color))
+            lines.append(hv.Curve([(x_min, i), (x_max, i)], Energy, 'Element').opts(color=color)) 
+            alphas.append(hv.Scatter(([alpha_keV], [i]), Energy, 'Element').opts(size=7, marker='square', color=color)) 
+        
+            yticks.append((i, element))
+        
+        atlas = (hv.Overlay(lines) * hv.Overlay(scatters) * hv.Overlay(alphas))
+        atlas = atlas.opts(yticks=yticks, frame_height=500, frame_width=500, xlim=(0, 22))
+    
+        return atlas
       
 
-    def plot_atlas(self, order='alpha', moseley=False, colorize_elements='all', ax=None): 
-
-        if ax is None: 
-            fig, ax = plt.subplots(figsize=[15, 7])
-            ax.set_title('Peak Pattern Atlas')
-
-        ptrn_dict_list = _sort_ptrn_list(self.ptrn_dict_list, order=order)
-        
-        n_ptrns = len(ptrn_dict_list)
-
-        yticks = []
-        ytick_labels = []
-        for i, ptrn_dict in enumerate(ptrn_dict_list): 
-            elem = ptrn_dict['elem']
-            name = ptrn_dict['name']
-            Z = ptrn_dict['atomic_number'] 
-            
-            if colorize_elements == 'all':
-                color = self.table.element_colors_dict[elem]
-            elif elem in colorize_elements: 
-                color = self.table.element_colors_dict[elem]
-            else: 
-                color = None
-        
-            ytick_labels.append(f'{name} ({Z})')
-
-            if moseley: 
-                offset = Z 
-            else: 
-                offset = i 
-                
-            yticks.append(offset) 
-            mos.plot_pattern(ptrn_dict, ax=ax, offset=offset, color=color) 
-        
-        ax.set_yticks(yticks) 
-        ax.set_yticklabels(ytick_labels)
-        ax.set_xlabel('Energy (keV)')
-        ax.set_xlim(xmin=0)
-        ax.set_xticks(range(25), minor=True);
-    
-
-        return ax 
 
 def _fetch_table(): 
     '''Utility function wrapper for mendeleev periodic table data.  

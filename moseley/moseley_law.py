@@ -5,10 +5,10 @@
 # %% auto 0
 __all__ = ['moseley_law']
 
-# %% ../notebooks/03_moseley-law.ipynb 10
+# %% ../notebooks/03_moseley-law.ipynb 13
 import numpy as np 
 
-# %% ../notebooks/03_moseley-law.ipynb 11
+# %% ../notebooks/03_moseley-law.ipynb 14
 def moseley_law(E_K_alpha_keV): 
     '''Square root form of Moseley's law. 
     
