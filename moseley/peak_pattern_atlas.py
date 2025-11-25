@@ -61,7 +61,7 @@ class PeakPatternAtlas():
         if verbose: 
             print('Ready building Peak Pattern Atlas!                                   ') 
 
-    def plot_atlas(self): 
+    def plot_atlas(self, moseley=False): 
         '''Build a holoviews peak pattern atlas. '''
     
         # standard element colors
@@ -79,20 +79,29 @@ class PeakPatternAtlas():
             # we should avoid recalculation here and use the ppa instance 
         
             element = ptrn['elem'] 
+            Z = ptrn['atomic_number'] 
+            color = color_dict[element]
+            
+            if moseley: 
+                y = Z 
+                color='grey'
+            else: 
+                y = i
+                
             peaks_x, peaks_y = ptrn['peaks_xy'].T 
             x_min = float(peaks_x.min()) 
             x_max =float(peaks_x.max())
-            ptrn_y = np.ones_like(peaks_y) * i
+            ptrn_y = np.ones_like(peaks_y) * y
             
             alpha_keV = ptrn['alpha_keV'] 
         
-            color = color_dict[element]
+            
             
             scatters.append(hv.Scatter((peaks_x, ptrn_y), Energy, 'Element').opts(size=5, color=color))
-            lines.append(hv.Curve([(x_min, i), (x_max, i)], Energy, 'Element').opts(color=color)) 
-            alphas.append(hv.Scatter(([alpha_keV], [i]), Energy, 'Element').opts(size=7, marker='square', color=color)) 
+            lines.append(hv.Curve([(x_min, y), (x_max, y)], Energy, 'Element').opts(color=color)) 
+            alphas.append(hv.Scatter(([alpha_keV], [y]), Energy, 'Element').opts(size=7, marker='square', color=color)) 
         
-            yticks.append((i, element))
+            yticks.append((y, element))
         
         atlas = (hv.Overlay(lines) * hv.Overlay(scatters) * hv.Overlay(alphas))
         atlas = atlas.opts(yticks=yticks, frame_height=500, frame_width=500, xlim=(0, 22))
