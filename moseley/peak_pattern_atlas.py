@@ -56,7 +56,8 @@ class PeakPatternAtlas():
             idxs = np.argsort(atomic_numbers) 
 
         self.ptrn_dict_list = [self.ptrn_dict_list[idx] for idx in idxs]  
-        self.element_list = [self.element_xrf_list[idx] for idx in idxs]  
+        self.element_xrf_list = [self.element_xrf_list[idx] for idx in idxs]  
+        self.yticks = [(i, xrf.element) for i, xrf in enumerate(self.element_xrf_list)]
             
         if verbose: 
             print('Ready building Peak Pattern Atlas!                                   ') 
@@ -94,9 +95,7 @@ class PeakPatternAtlas():
             ptrn_y = np.ones_like(peaks_y) * y
             
             alpha_keV = ptrn['alpha_keV'] 
-        
-            
-            
+                    
             scatters.append(hv.Scatter((peaks_x, ptrn_y), Energy, 'Element').opts(size=5, color=color))
             lines.append(hv.Curve([(x_min, y), (x_max, y)], Energy, 'Element').opts(color=color)) 
             alphas.append(hv.Scatter(([alpha_keV], [y]), Energy, 'Element').opts(size=7, marker='square', color=color)) 
