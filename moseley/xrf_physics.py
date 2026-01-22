@@ -5,7 +5,7 @@
 # %% auto #0
 __all__ = ['ElementXRF', 'gaussian_convolve', 'find_peaks', 'plot_pattern', 'get_attenuation']
 
-# %% ../notebooks/01_theoretical-peak-patterns.ipynb
+# %% ../notebooks/01_theoretical-peak-patterns.ipynb #e90320e2
 import numpy as np 
 import xraydb 
 import pandas as pd 
@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import mendeleev
 
-# %% ../notebooks/01_theoretical-peak-patterns.ipynb
+# %% ../notebooks/01_theoretical-peak-patterns.ipynb #46012cd7
 class ElementXRF(): 
     '''Computes fluorescence emission line energies and intensities for `element`. 
     
