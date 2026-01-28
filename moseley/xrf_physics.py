@@ -5,7 +5,7 @@
 # %% auto #0
 __all__ = ['ElementXRF', 'gaussian_convolve', 'find_peaks', 'plot_pattern', 'get_attenuation']
 
-# %% ../notebooks/01_theoretical-peak-patterns.ipynb #e90320e2
+# %% ../notebooks/01_theoretical-peak-patterns.ipynb
 import numpy as np 
 import xraydb 
 import pandas as pd 
@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import mendeleev
 
-# %% ../notebooks/01_theoretical-peak-patterns.ipynb #46012cd7
+# %% ../notebooks/01_theoretical-peak-patterns.ipynb
 class ElementXRF(): 
     '''Computes fluorescence emission line energies and intensities for `element`. 
     
@@ -44,7 +44,7 @@ class ElementXRF():
         line_jump_coeffs = [] 
         line_attenuations = [] 
         
-        line_intensities = []
+        line_intensities = [] 
         
         for name, line in lines.items(): 
 
@@ -100,7 +100,7 @@ class ElementXRF():
         for peak_keV in peaks_x:     
             line_idx = int(np.argmin((self.lines_table['energy'].values   - peak_keV)**2))
             line_label = self.lines_table['name'].values[line_idx]
-            self.peak_labels.append(line_label)
+            self.peak_labels.append(f'{element}_{line_label}')
 
         # create element pattern dict 
 
@@ -144,7 +144,7 @@ class ElementXRF():
         if peak_labels: 
             for label, xy in zip(self.peak_labels, self.peaks_xy): 
                 ax.annotate(label, xy, xytext=(0, 5), textcoords="offset points",
-                            va="bottom", ha="center") 
+                            va="bottom", ha="center", fontsize=8) 
     
         # need to interpolate spectrum to add vlines 
     
