@@ -25,8 +25,6 @@ easy to interpret XRF spectra reliably.
 
 ## Installation
 
-[![](https://zenodo.org/badge/DOI/10.5281/zenodo.4784233.svg)](https://doi.org/10.5281/zenodo.4784233)
-
 If you would like to adapt this plot to your own needs, for instance to
 to see what happens if you change beam energy, you can install this
 package yourself.

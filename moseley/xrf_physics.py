@@ -123,7 +123,7 @@ class ElementXRF():
         
         
 
-    def plot_spectrum(self, ax=None, edgecolor=None, facecolor=None, vlines_colors=None, xlim=[0, 25], peak_labels=True): 
+    def plot_spectrum(self, ax=None, edgecolor=None, facecolor=None, vlines_colors=None, xlim=[0, 26], peak_labels=True): 
         
         if edgecolor is None: 
             edgecolor = cm.tab20(0)
