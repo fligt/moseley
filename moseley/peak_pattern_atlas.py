@@ -10,8 +10,9 @@ __all__ = ['PeakPatternAtlas', 'colorize', 'PeriodicTable']
 import mendeleev as mv 
 from mendeleev.fetch import fetch_table  
 
-import moseley as mos 
+#import moseley as mos 
 from . import ElementXRF
+#from moseley import PeriodicTable
 
 # plotting 
 import pandas as pd 
@@ -20,7 +21,12 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches 
 import matplotlib.colors as mcolors 
 
-import holoviews as hv  
+import holoviews as hv
+from holoviews import opts 
+from bokeh.models import HoverTool 
+
+import re
+import numpy as np
 
 
 # %% ../notebooks/02_a-peak-pattern-atlas.ipynb #a75699df-b6ca-47a7-b4e0-18b01e56579b
@@ -30,7 +36,7 @@ class PeakPatternAtlas():
     def __init__(self, EOI=None, excitation_energy_keV=25, h_mm=0.001, x_keVs=None, verbose=True, order='alpha'):
         '''Compute an ordered Peak Pattern Atlas for `excitation_energy_keV=25`.'''
 
-        self.table = mos.PeriodicTable(EOI=EOI)
+        self.table = PeriodicTable(EOI=EOI)
 
         self.EOI = [element for element in self.table.EOI if not '#'in element]
         
@@ -62,52 +68,93 @@ class PeakPatternAtlas():
         if verbose: 
             print('Ready building Peak Pattern Atlas!                                   ') 
 
+    
     def plot_atlas(self, moseley=False): 
-        '''Build a holoviews peak pattern atlas. '''
+        '''Plot holoviews peak pattern atlas from `pattern_dict_list`.''' 
     
-        # standard element colors
-        ptable = mos.PeriodicTable()
-        color_dict = mos.colorize(ptable.ptable_regular)
+        # TODO: add escape and sum peaks 
+        # TODO: create separate patterns plotting function for other types of plots 
         
-        scatters = []
-        lines = []
-        yticks = []
-        alphas = []
-        
-        Energy = hv.Dimension('Energy', unit='keV', range=(0, 20))
-        
-        for i, ptrn in enumerate(self.ptrn_dict_list): 
-            # we should avoid recalculation here and use the ppa instance 
-        
-            element = ptrn['elem'] 
-            Z = ptrn['atomic_number'] 
-            color = color_dict[element]
-            
-            if moseley: 
-                y = Z 
-                color='grey'
-            else: 
-                y = i
-                
-            peaks_x, peaks_y = ptrn['peaks_xy'].T 
-            x_min = float(peaks_x.min()) 
-            x_max =float(peaks_x.max())
-            ptrn_y = np.ones_like(peaks_y) * y
-            
-            alpha_keV = ptrn['alpha_keV'] 
-                    
-            scatters.append(hv.Scatter((peaks_x, ptrn_y), Energy, 'Element').opts(size=5, color=color))
-            lines.append(hv.Curve([(x_min, y), (x_max, y)], Energy, 'Element').opts(color=color)) 
-            alphas.append(hv.Scatter(([alpha_keV], [y]), Energy, 'Element').opts(size=7, marker='square', color=color)) 
-        
-            yticks.append((y, element))
-        
-        atlas = (hv.Overlay(lines) * hv.Overlay(scatters) * hv.Overlay(alphas))
-        atlas = atlas.opts(yticks=yticks, frame_height=500, frame_width=500, xlim=(0, 22))
+        # STEP 1 
+        # create peak pattern dataframe and curve segments 
+        # that can be used as plotting data 
     
-        return atlas
-      
+        ptable = self.table
+        colors_dict = ptable.element_colors_dict 
+        
+        min_size, max_size = 3, 10 
+        delta_size = max_size - min_size
+        
+        df_list = []
+        segments_left = []
+        segments_right = []
+        elements = [] 
+        Z_list = []
+        
+        for i, ptrn_dict in enumerate(self.ptrn_dict_list): 
+            
+            elem = ptrn_dict['elem'] 
+            name = ptrn_dict['name']
+            color = colors_dict[elem]
+            peaks_x, peaks_y = ptrn_dict['peaks_xy'].T
+            peak_labels = ptrn_dict['peak_labels']
+            peak_labels = [re.sub('\\d', '', pl) for pl in peak_labels] # strip line number e.g. Ka1 -> Ka 
+            atomic_number = ptrn_dict['atomic_number']
+            n_rows = len(peaks_x) 
+            marker_list = ['circle'] * n_rows 
+              
+            size = (min_size + delta_size * peaks_y / peaks_y.max()).astype(int) 
+                                                
+            df = pd.DataFrame(dict(Element=[elem] * n_rows,
+                                   Z=atomic_number, 
+                                   name=[name] * n_rows, 
+                                   Line=peak_labels, 
+                                   Energy=peaks_x, 
+                                   peaks_y=peaks_y, 
+                                   color=[color] * n_rows, 
+                                   marker=marker_list, 
+                                   size=size)) 
+            df_list.append(df) 
+    
+            segments_left.append(float(peaks_x.min()))
+            segments_right.append(float(peaks_x.max()))
+            elements.append(elem)
+            Z_list.append(atomic_number) 
+                              
+        ptrns_df = pd.concat(df_list) 
+    
+        # STEP 2
+        # create holoviews Scatter and Curves Overlay elements 
+    
+        tooltips = [
+            ('element', '@name'), 
+            ('Line', '@Line'),
+            ('Energy (keV)', '@Energy')] 
+        
+        hover = HoverTool(tooltips=tooltips, attachment='vertical')
+    
+        energy = hv.Dimension('Energy', unit='keV') 
+    
+        if moseley: 
+            y_dim = 'Z'
+        else: 
+            y_dim = 'Element' 
+    
+        scatter = hv.Scatter(ptrns_df, kdims=[energy], vdims=[y_dim, 'color', 'size', 'name', 'marker', 'Line']).opts(color='color', line_color='black', marker='marker', size='size', tools=[hover])
+        if moseley: 
+            y_values = Z_list
+        else: 
+            y_values = elements 
+            
+        curves_list = [hv.Curve(([x0, x1], [y_val, y_val]), kdims=[energy], vdims=y_dim) for x0, x1, y_val in zip(segments_left, segments_right, y_values)]
+        curves = hv.Overlay(curves_list).opts(opts.Curve(color='black', line_width=1)) 
+    
+        atlas = curves * scatter 
+        atlas.opts(padding=0.02, frame_width=600, frame_height=500, title='XRF Peak Pattern Atlas')
+    
+        return atlas 
 
+    
 
 def _fetch_table(): 
     '''Utility function wrapper for mendeleev periodic table data.  
