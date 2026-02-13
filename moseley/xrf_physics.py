@@ -147,7 +147,6 @@ class ElementXRF():
                             va="bottom", ha="center", fontsize=8) 
     
         # need to interpolate spectrum to add vlines 
-    
         spectrum = sip.interp1d(x, y)
         line_keVs = self.lines_table['energy'] 
     

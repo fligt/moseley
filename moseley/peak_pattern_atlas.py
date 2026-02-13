@@ -145,12 +145,14 @@ class PeakPatternAtlas():
             y_values = Z_list
         else: 
             y_values = elements 
-            
+
+        grid_style = {'xgrid_line_color': 'lightgray', 'ygrid_line_color': 'white'} 
+        
         curves_list = [hv.Curve(([x0, x1], [y_val, y_val]), kdims=[energy], vdims=y_dim) for x0, x1, y_val in zip(segments_left, segments_right, y_values)]
-        curves = hv.Overlay(curves_list).opts(opts.Curve(color='black', line_width=1)) 
+        curves = hv.Overlay(curves_list).opts(opts.Curve(color='black', line_width=1, gridstyle=grid_style, show_grid=True)) 
     
         atlas = curves * scatter 
-        atlas.opts(padding=0.02, frame_width=600, frame_height=500, title='XRF Peak Pattern Atlas')
+        atlas.opts(padding=0.02, frame_width=500, frame_height=500, title='XRF Peak Pattern Atlas')
     
         return atlas 
 
