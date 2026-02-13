@@ -146,7 +146,7 @@ class PeakPatternAtlas():
         else: 
             y_values = elements 
 
-        grid_style = {'xgrid_line_color': 'lightgray', 'ygrid_line_color': 'white'} 
+        grid_style = {'xgrid_line_color': 'gray', 'minor_xgrid_line_color': 'lightgray', 'ygrid_line_color': 'white', 'ygrid_line_alpha': 0} 
         
         curves_list = [hv.Curve(([x0, x1], [y_val, y_val]), kdims=[energy], vdims=y_dim) for x0, x1, y_val in zip(segments_left, segments_right, y_values)]
         curves = hv.Overlay(curves_list).opts(opts.Curve(color='black', line_width=1, gridstyle=grid_style, show_grid=True)) 
