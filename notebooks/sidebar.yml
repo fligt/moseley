@@ -2,4 +2,7 @@ website:
   sidebar:
     contents:
       - index.ipynb
-      - 00_mplot.ipynb
+      - 01_theoretical-peak-patterns.ipynb
+      - 02_a-peak-pattern-atlas.ipynb
+      - 03_moseley-law.ipynb
+      - 20_xrf-physics-the-gory-details.ipynb
