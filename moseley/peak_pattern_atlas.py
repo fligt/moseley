@@ -82,7 +82,7 @@ class PeakPatternAtlas():
         ptable = self.table
         colors_dict = ptable.element_colors_dict 
         
-        min_size, max_size = 3, 10 
+        min_size, max_size = 3, 10 # markers
         delta_size = max_size - min_size
         
         df_list = []
@@ -152,7 +152,7 @@ class PeakPatternAtlas():
         curves = hv.Overlay(curves_list).opts(opts.Curve(color='black', line_width=1, gridstyle=grid_style, show_grid=True)) 
     
         atlas = curves * scatter 
-        atlas.opts(padding=0.02, frame_width=500, frame_height=500, title='XRF Peak Pattern Atlas')
+        atlas.opts(padding=0.02, frame_width=450, frame_height=500, title='XRF Peak Pattern Atlas')
     
         return atlas 
 
