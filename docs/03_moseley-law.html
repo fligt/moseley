@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Moseley’s law – moseley</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./20_xrf-physics-the-gory-details.html" rel="next">
+<link href="./02_a-peak-pattern-atlas.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-29cce2fd8955e2f5c811d5580a852512.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">moseley</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fligt/moseley"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_moseley-law.html">Moseley’s law</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome to moseley</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_theoretical-peak-patterns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Theoretical peak patterns</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_a-peak-pattern-atlas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Peak pattern atlas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_moseley-law.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Moseley’s law</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20_xrf-physics-the-gory-details.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">XRF physics - the gory details</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Moseley’s law</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>From peak energies to the Periodic Table</p>
+</blockquote>
+<section id="from-peak-energies-to-the-periodic-table" class="level2">
+<h2 class="anchored" data-anchor-id="from-peak-energies-to-the-periodic-table">From peak energies to the Periodic Table</h2>
+<div id="fig">
+<p><img src="https://upload.wikimedia.org/wikipedia/en/d/dd/Henry_Moseley.jpg" class="img-fluid"></p>
+<p>Henry Moseley (image: wikipedia)</p>
+</div>
+<p>As we have seen in the previous section an X-Ray Fluorescence spectrum for a specific chemical element contains a characteristic combination of sharp peaks of different heights at different energies. These discrete peaks are a direct evidence of the quantum mechanics of electrons jumping from one discrete energy level to another. In 1913-1914 the young British physicist <a href="https://en.wikipedia.org/wiki/Moseley%27s_law">Henry Moseley</a> discovered a beautiful simple regular pattern that relates the energy of the (typically) strongest peak in a pure element spectrum (called the <span class="math inline">\(K_{\alpha}\)</span> line) to the atomic number (<span class="math inline">\(Z\)</span>).</p>
+<p><span class="math display">\[ E_{K_{\alpha}} = 10.2 \left( Z - 1 \right)^2 \]</span></p>
+<p>Where the energy is expressed in units of electron volt <span class="math inline">\([eV]\)</span>. Suppose now that you observe a large peak in a spectrum at a given energy but it is unknown which element generated. It is useful now to invert this expression to calculate the atomic number of the prime suspect chemical element that possibly emitted the peak.</p>
+<p><span class="math display">\[ Z = \sqrt{\frac{E_{K_{\alpha}}}{10.2}} + 1 \]</span></p>
+<p>Note that that we have simple a square root function here. As a practical numerical example, suppose now we measure an XRF spectrum for a sample of a pure (for the sake of this exercise) unknown element (See figure x). The largest peak in this spectrum has an energy of 6.40 keV = 6400 eV. Rounding off one can calculate</p>
+<p><span class="math display">\[ Z = \sqrt{\frac{6400}{10.2}} + 1 = 26.05 \approx 26 \rightarrow \rm{Fe} \]</span></p>
+<p>In the periodic table it is found that this atomic number corresponds to iron (Fe), which indeed is the element used for the measurement. Let’s create a plot with peak patterns for all regular elements from sodium (Na) up to tin (Sn) to see if we can confirm Moseley’s law.</p>
+<div id="fa18843f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> moseley <span class="im">import</span> PeriodicTable, PeakPatternAtlas, moseley_law </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> holoviews <span class="im">as</span> hv </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="17448f25" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hv.extension(<span class="st">'bokeh'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="esms-options">{"shimMode": true}</script><style>*[data-root-id],
+*[data-root-id] > * {
+  box-sizing: border-box;
+  font-family: var(--jp-ui-font-family);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
+}
+
+/* Override VSCode background color */
+.cell-output-ipywidget-background:has(
+  > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
+),
+.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
+  background-color: transparent !important;
+}
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/javascript">
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  const force = true;
+  const version = '3.9.2'.replace('rc', '-rc.').replace('.dev', '-dev.');
+  const reloading = false;
+  const Bokeh = root.Bokeh;
+  const BK_RE = /^https:\/\/cdn\.bokeh\.org\/bokeh\/(release|dev)\/bokeh-/;
+  const PN_RE = /^https:\/\/cdn\.holoviz\.org\/panel\/[^/]+\/dist\/panel/i;
+
+  // Set a timeout for this load but only if we are not already initializing
+  if (typeof (root._bokeh_timeout) === "undefined" || (force || !root._bokeh_is_initializing)) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks;
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, js_modules, js_exports, Bokeh, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+    if (js_modules == null) js_modules = [];
+    if (js_exports == null) js_exports = {};
+
+    root._bokeh_onload_callbacks.push(callback);
+
+    if (root._bokeh_is_loading > 0) {
+      // Don't load bokeh if it is still initializing
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    } else if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
+      // There is nothing to load
+      run_callbacks();
+      return null;
+    }
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+    window._bokeh_on_load = on_load
+
+    function on_error(e) {
+      const src_el = e.srcElement
+      console.error("failed to load " + (src_el.href || src_el.src));
+    }
+
+    const skip = [];
+    if (window.requirejs) {
+      window.requirejs.config({'packages': {}, 'paths': {}, 'shim': {}});
+      root._bokeh_is_loading = css_urls.length + 0;
+    } else {
+      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
+    }
+
+    const existing_stylesheets = []
+    const links = document.getElementsByTagName('link')
+    for (let i = 0; i < links.length; i++) {
+      const link = links[i]
+      if (link.href != null) {
+        existing_stylesheets.push(link.href)
+      }
+    }
+    for (let i = 0; i < css_urls.length; i++) {
+      const url = css_urls[i];
+      const escaped = encodeURI(url)
+      if (existing_stylesheets.indexOf(escaped) !== -1) {
+        on_load()
+        continue;
+      }
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }    var existing_scripts = []
+    const scripts = document.getElementsByTagName('script')
+    for (let i = 0; i < scripts.length; i++) {
+      var script = scripts[i]
+      if (script.src != null) {
+        existing_scripts.push(script.src)
+      }
+    }
+    for (let i = 0; i < js_urls.length; i++) {
+      const url = js_urls[i];
+      const escaped = encodeURI(url)
+      const shouldSkip = skip.includes(escaped) || existing_scripts.includes(escaped)
+      const isBokehOrPanel = BK_RE.test(escaped) || PN_RE.test(escaped)
+      const missingOrBroken = Bokeh == null || Bokeh.Panel == null || (Bokeh.version != version && !Bokeh.versions?.has(version)) || Bokeh.versions?.get(version)?.Panel == null;
+      if (shouldSkip && !(isBokehOrPanel && missingOrBroken)) {
+        if (!window.requirejs) {
+          on_load();
+        }
+        continue;
+      }
+      const element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (let i = 0; i < js_modules.length; i++) {
+      const url = js_modules[i];
+      const escaped = encodeURI(url)
+      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
+        if (!window.requirejs) {
+          on_load();
+        }
+        continue;
+      }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+    for (const name in js_exports) {
+      const url = js_exports[name];
+      const escaped = encodeURI(url)
+      if (skip.indexOf(escaped) >= 0 || root[name] != null) {
+        if (!window.requirejs) {
+          on_load();
+        }
+        continue;
+      }
+      var element = document.createElement('script');
+      element.onerror = on_error;
+      element.async = false;
+      element.type = "module";
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      element.textContent = `
+      import ${name} from "${url}"
+      window.${name} = ${name}
+      window._bokeh_on_load()
+      `
+      document.head.appendChild(element);
+    }
+    if (!js_urls.length && !js_modules.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  const js_urls = ["https://cdn.holoviz.org/panel/1.9.4/dist/bundled/reactiveesm/es-module-shims@^1.10.0/dist/es-module-shims.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-3.9.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.9.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.9.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.9.2.min.js", "https://cdn.holoviz.org/panel/1.9.4/dist/panel.min.js"];
+  const js_modules = [];
+  const js_exports = {};
+  const css_urls = [];
+  const inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (let i = 0; i < inline_js.length; i++) {
+        try {
+          inline_js[i].call(root, root.Bokeh);
+        } catch(e) {
+          if (!reloading) {
+            throw e;
+          }
+        }
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+    root._bokeh_is_initializing = false;
+  }
+
+  function load_or_wait() {
+    // Implement a backoff loop that tries to ensure we do not load multiple
+    // versions of Bokeh and its dependencies at the same time.
+    // In recent versions we use the root._bokeh_is_initializing flag
+    // to determine whether there is an ongoing attempt to initialize
+    // bokeh, however for backward compatibility we also try to ensure
+    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
+    // before older versions are fully initialized.
+    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
+      // If the timeout and bokeh was not successfully loaded we reset
+      // everything and try loading again
+      root._bokeh_timeout = Date.now() + 5000;
+      root._bokeh_is_initializing = false;
+      root._bokeh_onload_callbacks = undefined;
+      root._bokeh_is_loading = 0;
+      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
+      load_or_wait();
+    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
+      setTimeout(load_or_wait, 100);
+    } else {
+      root._bokeh_is_initializing = true;
+      root._bokeh_onload_callbacks = [];
+      const bokeh_loaded = Bokeh != null && ((Bokeh.version === version && Bokeh.Panel) || (Bokeh.versions?.has(version) && Bokeh.versions.get(version)?.Panel));
+      if (!reloading && !bokeh_loaded) {
+        if (root.Bokeh) {
+          root.Bokeh = undefined;
+        }
+        console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+      }
+      load_libs(css_urls, js_urls, js_modules, js_exports, Bokeh, function() {
+        console.debug("Bokeh: BokehJS plotting callback run at", now());
+        run_inline_js();
+        if (Bokeh != undefined && !reloading) {
+          const NewBokeh = root.Bokeh;
+          if (Bokeh.versions === undefined) {
+            Bokeh.versions = new Map();
+          }
+          if (NewBokeh.version !== Bokeh.version) {
+            Bokeh[NewBokeh.version] = NewBokeh;
+            Bokeh.versions.set(NewBokeh.version, NewBokeh);
+          }
+          root.Bokeh = Bokeh;
+        }
+      });
+    }
+  }
+  // Give older versions of the autoload script a head-start to ensure
+  // they initialize before we start loading newer version.
+  setTimeout(load_or_wait, 100)
+}(window));
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/javascript">
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        let retries = 0;
+        const open = () => {
+          if (comm.active) {
+            comm.open();
+          } else if (retries > 3) {
+            console.warn('Comm target never activated')
+          } else {
+            retries += 1
+            setTimeout(open, 500)
+          }
+        }
+        if (comm.active) {
+          comm.open();
+        } else {
+          setTimeout(open, 500)
+        }
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        })
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<div id="ab569aae-0a78-471e-becb-db4e9a8edbdd">
+  <div id="c577992a-ddfa-40a5-84e1-9c79bf427f60" data-root-id="ab569aae-0a78-471e-becb-db4e9a8edbdd" style="display: contents;"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  var docs_json = {"f214e98e-13d2-4470-9132-352bcb3079bd":{"version":"3.9.2","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"294f0cfe-1a21-41c7-b783-db93460686ff","attributes":{"notifications":{"type":"object","name":"Notifications","id":"efd3524f-30fa-4868-9614-b7c6f1d10926"}}},"roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"ab569aae-0a78-471e-becb-db4e9a8edbdd"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"bf3d76ad-7a26-4001-826d-2df3eb798f4f","attributes":{"plot_id":"ab569aae-0a78-471e-becb-db4e9a8edbdd","comm_id":"638d5973d2d6488a992944866e3f2683","client_comm_id":"0482b563c31b4206b04802f73512ce3a"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"start","kind":"Any","default":0},{"name":"end","kind":"Any","default":100},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]},{"type":"model","name":"holoviews.plotting.bokeh.raster.HoverModel","properties":[{"name":"xy","kind":"Any","default":null},{"name":"data","kind":"Any","default":null}]}]}};
+  var render_items = [{"docid":"f214e98e-13d2-4470-9132-352bcb3079bd","roots":{"ab569aae-0a78-471e-becb-db4e9a8edbdd":"c577992a-ddfa-40a5-84e1-9c79bf427f60"},"root_ids":["ab569aae-0a78-471e-becb-db4e9a8edbdd"]}];
+  var docs = Object.values(docs_json)
+  if (!docs) {
+    return
+  }
+  const version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  async function embed_document(root) {
+    var Bokeh = get_bokeh(root)
+    await Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    for (const render_item of render_items) {
+      for (const root_id of render_item.root_ids) {
+    const id_el = document.getElementById(root_id)
+    if (id_el.children.length && id_el.children[0].hasAttribute('data-root-id')) {
+      const root_el = id_el.children[0]
+      root_el.id = root_el.id + '-rendered'
+      for (const child of root_el.children) {
+            // Ensure JupyterLab does not capture keyboard shortcuts
+            // see: https://jupyterlab.readthedocs.io/en/4.1.x/extension/notebook.html#keyboard-interaction-model
+        child.setAttribute('data-lm-suppress-shortcuts', 'true')
+      }
+    }
+      }
+    }
+  }
+  function get_bokeh(root) {
+    if (root.Bokeh === undefined) {
+      return null
+    } else if (root.Bokeh.version !== version) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(version)) {
+    return null
+      }
+      return root.Bokeh.versions.get(version);
+    } else if (root.Bokeh.version === version) {
+      return root.Bokeh
+    }
+    return null
+  }
+  function is_loaded(root) {
+    var Bokeh = get_bokeh(root)
+    return (Bokeh != null && Bokeh.Panel !== undefined)
+  }
+  if (is_loaded(root)) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (is_loaded(root)) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 200) {
+          clearInterval(timer);
+      var Bokeh = get_bokeh(root)
+      if (Bokeh == null || Bokeh.Panel == null) {
+            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
+      } else {
+        console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
+        embed_document(root)
+      }
+        }
+      }
+    }, 25, root)
+  }
+})(window);</script>
+</div>
+<div class="cell-output cell-output-display">
+
+
+
+
+<div class="logo-block">
+<a href="https://holoviews.org" target="_blank" title="HoloViews 1.23.2">
+  <img src="data:image/png;base64,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
+roTBs2RqAAAAAElFTkSuQmCC" style="height:25px; border-radius:12px; display: inline-block; float: left; vertical-align: middle">
+</a>
+
+
+<a href="https://bokeh.org" target="_blank" title="Bokeh 3.9.2">
+  <img src="data:image/png;base64,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" style="height:15px; border-radius:12px; display: inline-block; float: left">
+  
+</a>
+
+
+
+
+
+
+
+<span style="float: left; margin-left: 5px; line-height: 15px; cursor: pointer; opacity: 0.7;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'" title="Extension loaded. This cell output contains code that enables plot interactivity, it should not be removed.">ⓘ</span>
+</div>
+
+</div>
+</div>
+<div id="2e558997" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> PeriodicTable()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>H_to_Sn <span class="op">=</span> <span class="bu">list</span>(table.ptable_regular[<span class="st">'symbol'</span>])[<span class="dv">10</span>:<span class="dv">50</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ppa <span class="op">=</span> PeakPatternAtlas(EOI<span class="op">=</span>H_to_Sn, excitation_energy_keV<span class="op">=</span><span class="dv">40</span>, order<span class="op">=</span><span class="st">'Z'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Please wait while computing spectral pattern for element 1/40...Please wait while computing spectral pattern for element 2/40...Please wait while computing spectral pattern for element 3/40...Please wait while computing spectral pattern for element 4/40...Please wait while computing spectral pattern for element 5/40...Please wait while computing spectral pattern for element 6/40...Please wait while computing spectral pattern for element 7/40...Please wait while computing spectral pattern for element 8/40...Please wait while computing spectral pattern for element 9/40...Please wait while computing spectral pattern for element 10/40...Please wait while computing spectral pattern for element 11/40...Please wait while computing spectral pattern for element 12/40...Please wait while computing spectral pattern for element 13/40...Please wait while computing spectral pattern for element 14/40...Please wait while computing spectral pattern for element 15/40...Please wait while computing spectral pattern for element 16/40...Please wait while computing spectral pattern for element 17/40...Please wait while computing spectral pattern for element 18/40...Please wait while computing spectral pattern for element 19/40...Please wait while computing spectral pattern for element 20/40...Please wait while computing spectral pattern for element 21/40...Please wait while computing spectral pattern for element 22/40...Please wait while computing spectral pattern for element 23/40...Please wait while computing spectral pattern for element 24/40...Please wait while computing spectral pattern for element 25/40...Please wait while computing spectral pattern for element 26/40...Please wait while computing spectral pattern for element 27/40...Please wait while computing spectral pattern for element 28/40...Please wait while computing spectral pattern for element 29/40...Please wait while computing spectral pattern for element 30/40...Please wait while computing spectral pattern for element 31/40...Please wait while computing spectral pattern for element 32/40...Please wait while computing spectral pattern for element 33/40...Please wait while computing spectral pattern for element 34/40...Please wait while computing spectral pattern for element 35/40...Please wait while computing spectral pattern for element 36/40...Please wait while computing spectral pattern for element 37/40...Please wait while computing spectral pattern for element 38/40...Please wait while computing spectral pattern for element 39/40...Please wait while computing spectral pattern for element 40/40...Ready building Peak Pattern Atlas!                                   </code></pre>
+</div>
+</div>
+<div id="3155d0f1" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">30</span>, <span class="fl">0.1</span>) <span class="co"># </span><span class="al">TODO</span><span class="co"> add moseley curve </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> moseley_law(x)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>moseley <span class="op">=</span> hv.Curve((x, y), <span class="st">'Energy'</span>, <span class="st">'Element'</span>).opts(color<span class="op">=</span><span class="st">'red'</span>, width<span class="op">=</span><span class="dv">500</span>, height<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>atlas <span class="op">=</span> ppa.plot_atlas(moseley<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>(atlas <span class="op">*</span> moseley).relabel(<span class="st">'Moseley Law'</span>).opts(ylabel<span class="op">=</span><span class="st">'Atomic number (Z)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div id="8e45de2c-0a6d-4419-8370-3caa93cfb459">
+  <div id="ec29e2da-bacc-4098-b6ea-8ddb144e67b9" data-root-id="8e45de2c-0a6d-4419-8370-3caa93cfb459" style="display: contents;"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  var docs_json = {"aa962602-ebd5-4745-ab05-54f5fa82936f":{"version":"3.9.2","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"71933033-1305-47b2-9193-18d8c1bd89a1","attributes":{"notifications":{"type":"object","name":"Notifications","id":"284e53cb-3e46-4ff8-a1b4-d7e5e0f02439"}}},"roots":[{"type":"object","name":"Row","id":"8e45de2c-0a6d-4419-8370-3caa93cfb459","attributes":{"name":"Row00495","tags":["embedded"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  width: calc(min(40px, 300px));\n  height: calc(min(40px, 300px));\n  mask-size: calc(min(40px, 300px)) calc(min(40px, 300px));\n  -webkit-mask-size: calc(min(40px, 300px)) calc(min(40px, 300px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"40b1befe-cfa1-473f-a8b5-3112b9cbd351","attributes":{"url":"https://cdn.holoviz.org/panel/1.9.4/dist/css/loading.css?v=1.9.4"}},{"type":"object","name":"ImportedStyleSheet","id":"a63fea26-088d-4375-a0ff-234815021465","attributes":{"url":"https://cdn.holoviz.org/panel/1.9.4/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"02477202-bffd-4834-8d69-1a9903a40876","attributes":{"url":"https://cdn.holoviz.org/panel/1.9.4/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"006b891b-8a16-424d-9caf-d194b644d3fd","attributes":{"url":"https://cdn.holoviz.org/panel/1.9.4/dist/bundled/theme/native.css"}}],"min_width":500,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Spacer","id":"12f9bd93-7ecd-49f9-8ce7-7bba42a60c47","attributes":{"name":"HSpacer00499","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  width: calc(min(40px, 300px));\n  height: calc(min(40px, 300px));\n  mask-size: calc(min(40px, 300px)) calc(min(40px, 300px));\n  -webkit-mask-size: calc(min(40px, 300px)) calc(min(40px, 300px));\n}",{"id":"40b1befe-cfa1-473f-a8b5-3112b9cbd351"},{"id":"02477202-bffd-4834-8d69-1a9903a40876"},{"id":"006b891b-8a16-424d-9caf-d194b644d3fd"}],"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Figure","id":"6e99f60c-5e35-4300-a738-96c26bbcfc1a","attributes":{"width":500,"height":500,"margin":[5,10],"sizing_mode":"fixed","align":"start","x_range":{"type":"object","name":"Range1d","id":"9089aa98-b7ba-485c-9fe8-cf8e9ba6d8fd","attributes":{"name":"Energy","tags":[[["Energy","keV"]],[]],"end":29.900000000000002,"reset_start":0.0,"reset_end":29.900000000000002}},"y_range":{"type":"object","name":"Range1d","id":"e23e129b-6f13-453a-a102-3aa7eb75f012","attributes":{"name":"Z","tags":[[["Z",null]],{"type":"map","entries":[["invert_yaxis",false],["autorange",false]]}],"start":-4.414215131503004,"end":60.55636644653304,"reset_start":-4.414215131503004,"reset_end":60.55636644653304}},"x_scale":{"type":"object","name":"LinearScale","id":"cb869254-0b4d-4e75-90ea-7d52cf7eca51"},"y_scale":{"type":"object","name":"LinearScale","id":"d9482bb0-f125-4541-90c3-8500b5e5ac57"},"title":{"type":"object","name":"Title","id":"eaf7c584-71b6-4e88-99b0-e27b5f100522","attributes":{"text":"Moseley Law","text_color":"black","text_font_size":"12pt"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"a49f06fa-dfb8-403d-bd8d-55a165908db3","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"0be70bc7-40b6-4c74-bc3f-1e8d4edf032f","attributes":{"selected":{"type":"object","name":"Selection","id":"8fa65a72-b1a5-4a6c-a2c4-421009acf02a","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"2eb93cfa-809b-48f0-8d02-be04287e67ff"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA//M+FijlsuSDvTeUBgDDM6THEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/+NmYGDgBmIAPkRJ7wgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"782bcd6a-142c-4391-a3fe-06b7463f3459","attributes":{"filter":{"type":"object","name":"AllIndices","id":"23c0b272-75d0-45e2-b92a-f0b8245d7679"}}},"glyph":{"type":"object","name":"Line","id":"31067ab8-d1a7-46f6-a99b-5b3d8ebc1072","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"3d373b7b-7a1f-4496-a62c-3cd095058117","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"ca780bac-7257-4cd6-abb2-b5839bf2f86f","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"c007ed05-5eb2-408c-b5f3-191b717a89ef","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"a5f312c6-711c-47c1-a1ad-345022952c4d","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"d1c2b76f-dcc0-4d45-a62f-5e7544c8f227","attributes":{"selected":{"type":"object","name":"Selection","id":"98935f80-18d5-4a5d-8ecb-aef2f16b7888","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"42536d7b-3afc-4d70-9fb1-805d1d9116bf"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/6tIPP+kUvOLfQWUBgAScutlEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/+NhYGDgAWIAnnVbeAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"f964cbe9-523d-4777-936a-70902d331afd","attributes":{"filter":{"type":"object","name":"AllIndices","id":"157eb8c6-8af1-4c2a-a176-6f6d0f99724a"}}},"glyph":{"type":"object","name":"Line","id":"72864737-9eaa-48be-8b2d-33ebee918407","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"42cb3289-e8e0-434f-825e-d82f2cf250bf","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"9fd5f4c7-b756-4c2b-9216-0661359866c8","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"97ba2105-7b8f-4208-9428-ab28400c84bd","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"dbffdb57-1a77-4eda-acd7-1453cddb477e","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"91e589ee-d452-4794-81c7-5e68a5a5824b","attributes":{"selected":{"type":"object","name":"Selection","id":"1d671199-c09c-4035-8f9c-1b608d69d205","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"69b2c6b4-f7b8-4a70-a93b-fab6d50e2ad6"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9MqeHvr+v3v9lpQGgD+BJeoEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/+NlYGDgBWIAZRJNDAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"99554eb9-27f8-45ba-966e-8576741e8f01","attributes":{"filter":{"type":"object","name":"AllIndices","id":"cb3a3cc7-abf2-49e3-86c8-701c4649c477"}}},"glyph":{"type":"object","name":"Line","id":"bbc73ad1-12ef-4044-be82-5bb96a603fc1","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"a3d42cac-fbdf-4412-96ac-0348441be2ab","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"ce19af98-8671-403c-992d-7af44f35dac5","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"bf0b8d38-fcf5-4e5d-9d67-bf49ac41efd5","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"c174d041-a67e-4a3d-a642-08012912a6cc","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"d562036c-6b85-4ceb-b627-5718a273a0d1","attributes":{"selected":{"type":"object","name":"Selection","id":"69491b9f-a7d1-4831-8835-0f47d1c6d151","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"93db5a7f-0e93-45b0-9c33-7fbd1ff3a20a"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/+N/JZav/OK3PT+UBgB70SyxEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/+NjYGDgA2IAaLp3kAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"519c1d33-8120-431a-abbc-cb46cd669667","attributes":{"filter":{"type":"object","name":"AllIndices","id":"f1774e58-9240-40b2-889a-287687e50402"}}},"glyph":{"type":"object","name":"Line","id":"8735c580-97ee-4e34-9e6f-4562d75cb0c7","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"43570fba-7df8-4897-88e0-e2b3eb322b29","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"d70cc870-7a7a-443a-83e0-18e27b5e3b22","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"deda445c-7926-48ec-ae3d-4932454befe9","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"196b5a0a-ebd0-4543-a259-7e6735cb2b88","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"ec88e738-926c-4b54-8168-e51a4c10fb31","attributes":{"selected":{"type":"object","name":"Selection","id":"a540ce9d-452b-4fae-8bf1-b70e85f16665","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"a1e8a9ad-1cf2-4f73-8148-79fdaa786fa0"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1uhyf3ljwSDwwooDQD5ekVoEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/+NnYGDgB2IAk91h5AgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"ae7fd655-2b96-4805-86c8-152ace028150","attributes":{"filter":{"type":"object","name":"AllIndices","id":"4d00753a-5302-449e-81ac-49967c373130"}}},"glyph":{"type":"object","name":"Line","id":"55a6414b-4398-4d9b-bd61-6b52c9cabcb9","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"bd94147c-ac99-47d9-86e0-2b934b19a02e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"8a92e2d9-5c60-407b-969a-84e0d127d7ef","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"1f4c4e00-1aae-4af2-889c-6b9defd6b447","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"615fedb8-a3e2-48de-8036-d303975938bf","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"7a4b58ea-983e-4986-9fbd-d2a4afb43efa","attributes":{"selected":{"type":"object","name":"Selection","id":"7df9633f-c27d-4614-965b-a8a77d1c1e54","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"360a34f4-5b7a-4615-9e23-031442bf7a8b"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1tyNkG0uJ7JYQmUBgDi11KLEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xNgYGAQAGIA3bmASQgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"0b87dd3d-5dc5-4091-99a2-4022d19afece","attributes":{"filter":{"type":"object","name":"AllIndices","id":"3fc1bbef-789b-46b6-b5cd-f09c93478530"}}},"glyph":{"type":"object","name":"Line","id":"fd62d49d-b08b-4b67-9437-c5ca590a871d","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"e4d78fe2-427a-4575-85cd-4e82c9b9c445","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"906fc7c9-f901-4917-9b84-1324c6fa2526","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"97edd65b-f0bb-4175-b85e-a6b7ce8a1d7b","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"59e92f1a-55fb-45d9-8af7-4ab166a2c98c","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"e32843c0-f4c7-4040-8e0d-d84bc34df5c5","attributes":{"selected":{"type":"object","name":"Selection","id":"f23cdf13-4019-4405-a112-cde2cb2dcd6f","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"378f5104-6145-48f8-bd01-b1c4f45b9845"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA//vB8sjmVe9x+/K3r997f2NxAAA3JnltEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xNkYGAQBGIAJt6WPQgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"f27d4e3b-bbe9-492f-9f7b-e50bd9670755","attributes":{"filter":{"type":"object","name":"AllIndices","id":"d132cf9d-1a37-423a-8ec3-21066c79b199"}}},"glyph":{"type":"object","name":"Line","id":"7d1b36ea-4698-452f-b5a4-4df53998969b","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"2b806bf0-4c56-4167-8665-4ee987699a5c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"171095d5-07c0-49a1-84ca-ae93dbd2ee75","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"4fbb600d-9522-4461-98bc-9118b75e7097","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"16695f80-5000-47ee-acb9-4131aca4010e","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"b3fc1700-2291-4169-bcab-fbebd4354164","attributes":{"selected":{"type":"object","name":"Selection","id":"827e76f7-823e-4ebd-9a8d-860fe4676c9f","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"3e995144-183b-4535-9c66-12becf6eb058"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1PaMUP2yJoz9oE8H80lMzkdABOMGnEQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xNiYGAQAmIAK3asoQgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"81c567ab-fc68-435e-a895-dc3d9093d44d","attributes":{"filter":{"type":"object","name":"AllIndices","id":"c041ade8-7bf6-4309-a76e-672c44204b65"}}},"glyph":{"type":"object","name":"Line","id":"70969f33-19f8-4469-9f6c-a310cf71a994","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"ce6cb307-0abc-40fa-930c-95ba4a15682e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"c84ba9b0-75b0-45b4-922f-5ad62453d50e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"d7e4936e-3d45-46d3-a6eb-51510bbdf6f5","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"4069e645-b7b1-4de0-b522-24a5fe955946","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"74e856e2-3087-4dbc-bcc7-003ad7f16045","attributes":{"selected":{"type":"object","name":"Selection","id":"2453e797-1d6e-4ac1-8028-573f15115026","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"0e68a397-c501-4ab5-b936-e37dd63548a4"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA//M+FijlsuSCPV+ZcdXXLTwOALUipNQQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xNmYGAQBmIA0BG61QgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"96ae64c3-6a43-470c-a79e-b42fb8eabe87","attributes":{"filter":{"type":"object","name":"AllIndices","id":"67474da9-07f5-455b-90af-670be4d6eaf9"}}},"glyph":{"type":"object","name":"Line","id":"403957fe-989c-4128-abbf-feb8df789f71","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"01d4b7a2-c263-4a59-8de3-494243f6aaa2","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"4c8778ef-e4dc-4794-bd88-286de5df8c1e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"04fb1bfe-b013-44ce-bd4e-218b429de769","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"49396566-7737-4a76-a41f-ad8acde406f4","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"d5224d2b-b417-4f9c-b35d-c8f67f57ba5a","attributes":{"selected":{"type":"object","name":"Selection","id":"d235cfed-b132-478c-86bf-2491e8dd66c4","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"7022ffaf-8bf9-493f-9e9f-ce5f146038bd"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/7Phb35vXXrZ/jiP8stNPAIOAIxz0qYQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xNhYGAQAWIAcCCoQggAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"fe0aa5ba-3a9d-4559-96f3-9a618c2e49ab","attributes":{"filter":{"type":"object","name":"AllIndices","id":"8caec691-3064-498a-9105-c7d8f685620d"}}},"glyph":{"type":"object","name":"Line","id":"6b3e84c9-da24-445b-adfa-0c50c508199f","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"1efdb231-5de5-415d-a262-1ed1c7ac47d9","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"a52f356b-2239-4d0a-860b-e297bdbf4d4b","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"bdf78cb9-fc65-487c-b391-2c22f187c158","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"15c1600b-ce69-407c-ae02-bc9fbbc16b68","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"07385719-dfe6-48a0-ad7d-ec98bfb72572","attributes":{"selected":{"type":"object","name":"Selection","id":"9ce9fe4e-0e28-4007-aaee-09d46157b49d","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"90cb5078-0f69-4e96-a51a-280370ec0205"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9ON2HLE2O2avd13z5vTbws6AAAuBSa4EAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xNlYGAQBWIAi0e+NggAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"741befd0-1d07-41fa-b3cf-4d99e891667a","attributes":{"filter":{"type":"object","name":"AllIndices","id":"7ca6f9dd-236d-4e99-823b-8e38ef740d4f"}}},"glyph":{"type":"object","name":"Line","id":"53334c9a-4f5f-4111-9475-0f6cfa397628","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"12a817ce-797c-4be9-8cb6-b5a1761d20bc","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"be372874-2c8e-4804-a305-24b01099d36b","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"6f63aacd-b70e-48f8-bebe-b46a0f5d4af5","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"5f9d29f4-2e08-4106-9c91-24a010353d93","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"6b9c6790-caa3-411a-ab7e-564978799271","attributes":{"selected":{"type":"object","name":"Selection","id":"8c8fc806-56c5-4c88-a018-c2b6ebb94252","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"421437bc-7d88-41b7-be81-4fcdf60453cd"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1PaMUP2yJo79r2xy5ru7xJ2AADo88wnEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xNjYGAQA2IAhu+EqggAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"b663b885-a918-4fc5-9c51-e76a7f67365b","attributes":{"filter":{"type":"object","name":"AllIndices","id":"c85354a8-3e35-4bf5-ae49-b0ca892bf073"}}},"glyph":{"type":"object","name":"Line","id":"bb31dac9-5952-48a8-bda4-cd80c62e7a6d","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"aa367768-d535-4ff9-9d38-e463dd03f62c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"2e4bdc32-b3aa-4a3a-b0a5-1b6e535f6279","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"31c9436f-1704-4174-9c40-3970314448a1","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"2e2236aa-473e-4ea9-a026-2d451c22f046","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"216b9dde-1cae-4d39-b66e-a7e7453346e3","attributes":{"selected":{"type":"object","name":"Selection","id":"cc14baf9-0efb-4d19-be69-c6e9221bf5cc","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"323bc347-769b-4934-91e1-4750cd9588f9"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/3O8L3D4s+MD+ykxCh8ubxN1AAB/uGdoEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xNnYGAQB2IAfYiS3ggAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"98df848b-8fa7-4382-a76d-8b8cfa291909","attributes":{"filter":{"type":"object","name":"AllIndices","id":"df52e92c-0bda-43fe-939f-a3acb18c8ef4"}}},"glyph":{"type":"object","name":"Line","id":"d48f4821-b60b-4052-9709-cb70476b48ff","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"1bfcf67c-28f8-4c15-a8be-7e3beb4a7ba6","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"677e0dc0-5a1b-49fd-b255-b49c79f219e9","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"81941572-0b09-4c8b-889f-a4b1650f4e82","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"b9e93538-7b20-4681-bf31-8361cfc22471","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"a7fb9d13-6983-4b85-9006-00cbfdcb067d","attributes":{"selected":{"type":"object","name":"Selection","id":"1d3fd057-55a3-4fbe-9e04-43827d9f532f","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"53f0544b-9688-44d2-bcb2-4f05048d1393"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/ytMCi1v1X1kHzc1qzjmtLgDAB1I7uEQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5NgYGCQAGIAh4rRXwgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"ae1c4c31-f61c-4009-a9aa-fbcf5d93b0e1","attributes":{"filter":{"type":"object","name":"AllIndices","id":"aa01fd75-afc9-4c8e-b974-ce5a1e3a025d"}}},"glyph":{"type":"object","name":"Line","id":"537b2c3b-21ae-4fd3-a800-bf7630df83d4","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"5cf1a046-d580-4bcc-b755-177fc8ba8629","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"4e175c8a-2b83-4ffb-8e8a-ca379d01b11f","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"e12b7bb1-1a10-46cc-8ff8-b037bc4cca9c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"a9493686-a66b-41f8-a374-72b37d758d78","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"8145be5b-d9cc-48cf-9c1f-b0793d9027cc","attributes":{"selected":{"type":"object","name":"Selection","id":"3d6a47b1-888c-4177-9e69-ca78f0c10a33","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"bffd655d-6700-4b3e-aa70-a0a1360069c5"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA//O/yzLvjuUT+5fsrTyVPyQdANJegdAQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5NkYGCQBGIAfO3HKwgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"c64ff4ae-90e8-457d-82ea-816abb33c8b6","attributes":{"filter":{"type":"object","name":"AllIndices","id":"919ff3b7-99f1-40c7-8c00-3e7b46383e30"}}},"glyph":{"type":"object","name":"Line","id":"0c2af825-c526-4153-87a7-e1b56743d1db","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"ac7ce2b9-74f0-462d-aadb-6274ab34c0e4","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"a5d3c7bf-ae7d-4b17-b0de-6a31ddd93934","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"13918d0d-75c3-46cb-a173-590aa3879e6b","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"f3a4fb57-9931-43ba-a527-ca690244e928","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"ddde374e-f9d3-4652-ac92-f8e49c01ac74","attributes":{"selected":{"type":"object","name":"Selection","id":"a2b54d08-f73a-4e29-bbee-a3adefb04e75","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"6f879e6c-8cf8-4706-b93d-5ab8bf387ae9"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/7vtL2/+M+2ZvfmW/N2adjIOAADlSfoQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5NiYGCQAmIAcUX9twgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"abe1e09a-5015-45d6-8881-8890b1b65dc5","attributes":{"filter":{"type":"object","name":"AllIndices","id":"3367cb8e-08f1-4cf0-8db8-be0c4e128ced"}}},"glyph":{"type":"object","name":"Line","id":"91bfcef2-e382-4259-a76b-40d8c055e1a4","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"9d9e4676-155c-42df-a405-d068ad98842f","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"62392f92-9ad1-4c71-95cb-a212470c5d6f","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"64e036dd-333b-48ee-9a6f-6aafd85f6194","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"6fc22b20-d07e-4609-ae47-cde51dab181a","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"ca7de7a6-5f5e-4bae-afcb-3959b6a82f30","attributes":{"selected":{"type":"object","name":"Selection","id":"b85c94c3-2bd7-473b-b3ee-3c9cb8bd274b","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"a043879d-343f-4265-b7b9-fd29138c20e0"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xPZtcTp9pYX9kHWdy+GzpBzAAAIwzWsEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5NmYGCQBmIAiiLrwwgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"ca7621c4-9cc9-4328-889e-3ea14281d941","attributes":{"filter":{"type":"object","name":"AllIndices","id":"69a60d84-390b-4630-a790-416c30dd39fb"}}},"glyph":{"type":"object","name":"Line","id":"54e91dcb-facd-499c-a341-55c12e5fb270","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"1b192476-0577-4f03-8e81-5868b9c30309","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"60ccc1a7-1e94-454e-8381-5e00ae9d39b7","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"fd2f9ff9-1979-4620-ba9d-b2cbaeecb5aa","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"dc6089f4-291c-4c13-b42e-37b634f54d1b","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"1a0532cb-d847-4ed0-82eb-877a78bf6693","attributes":{"selected":{"type":"object","name":"Selection","id":"eb2621c1-e12a-4965-b8ee-d2798a903cd6","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"b0cbe43d-ccdf-4f7a-9e7f-45e7029607de"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA//sjPfVAk/Jr+8m6JmHT2xUcAAYycYMQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5NhYGCQAWIAKhP5VAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"148ca263-726f-44e2-aa01-a4b34348bead","attributes":{"filter":{"type":"object","name":"AllIndices","id":"c7d0d443-a94c-40e5-84c3-e5904f86fcd8"}}},"glyph":{"type":"object","name":"Line","id":"cd57d4b9-932f-4473-9df5-524678438801","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"cdd31b5d-0a66-4b4f-b9a4-51dc6c845f75","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"d8fd6aac-8dd8-4286-891b-7c80927d91bb","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"8d0df491-f502-4c4d-821c-1fc9803d7b58","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"66cf80ae-3889-4671-a331-c3c02db8b550","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"0028c677-296d-465d-83b1-e72a007fac18","attributes":{"selected":{"type":"object","name":"Selection","id":"3df3f4a2-28a7-486a-a200-1c78176bbd80","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"1114b193-c166-4c7f-aed3-1edc04e5c49e"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5tY+mHD+01v7WNvJZ7zPa/oAAC4HnxQEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5NlYGCQBWIA0XTvIAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"acccd962-a9cf-4ef6-b048-80935488e8b0","attributes":{"filter":{"type":"object","name":"AllIndices","id":"03774ac9-5d77-4176-9040-7d3db02c765c"}}},"glyph":{"type":"object","name":"Line","id":"dd8dc37d-8d87-4193-8a31-7335a5d7fd31","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"5901fa45-7057-4e4e-bd13-9910549c76a7","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"51652d3f-e3fa-4fd1-8cae-b307d2dfc029","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"74a97815-3e95-4d4e-a368-c92231d35989","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"dcb6849d-a590-49e7-ac17-6377cf187283","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"2ce68ce7-a62a-4989-b30e-da2e3c63a986","attributes":{"selected":{"type":"object","name":"Selection","id":"c867b0cc-6226-4380-b8f0-a19de47547b7","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"bc7ace90-9979-491e-94ff-34da3d0a8942"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/8tKvs050fCDPeeS8kA/ZWUHADlJz9cQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5NjYGCQA2IA3NzVvAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"72f33685-b11e-4469-8442-84f567b8c29c","attributes":{"filter":{"type":"object","name":"AllIndices","id":"930eccc5-bd64-458c-9778-6ebeadea9032"}}},"glyph":{"type":"object","name":"Line","id":"9cd92010-afaf-4647-b108-483aa9fdbf78","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"1d6b1d3b-765b-4f14-ab64-278feeaa2ad0","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"ba4cefac-fcd9-446c-b610-bddf69d58a87","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"5409cf43-c3b9-4ed9-b66f-b2405668e508","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"cb87d5d1-68a7-4170-bae5-d0b93889cdcd","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"c509979b-6a4d-4691-b08c-728911764c12","attributes":{"selected":{"type":"object","name":"Selection","id":"f0dcd1bb-b5a1-4ed5-99ab-cf0355daae7f","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"cc3b19e8-63e6-43f6-8852-45b5b767e532"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/3vMXvKFZ9ZH+56Xh3o3tqs4AABhr+RjEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/5NnYGCQB2IAJ7vDyAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"01d45f95-213b-44ed-921c-24c140db6a6b","attributes":{"filter":{"type":"object","name":"AllIndices","id":"d30bf80a-c091-459d-a6e3-0604c35af230"}}},"glyph":{"type":"object","name":"Line","id":"778b240d-abfb-4c35-bdef-94364c887b2c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"16325858-39af-4477-b672-c17c52361128","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"7b710e10-409a-4cbf-8dad-f3f69b61af36","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"4ce73a69-c235-4b1b-a43c-7e4c4e24d44f","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"e28c41f2-9384-4c03-851b-94a671703b4d","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"4564502d-c9a3-48a0-b086-ddc43caad386","attributes":{"selected":{"type":"object","name":"Selection","id":"5b76ba70-2db9-4faa-92f6-a5bbbbcc5b22","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"1cb777b8-f3f2-445e-a08b-36ce64d6ccdd"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/zPScJrxWuizfemc87VB31QdANoK3pUQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NgYGBQAGIAARJmPAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"921baa71-ce9b-459f-95fe-6868371045f9","attributes":{"filter":{"type":"object","name":"AllIndices","id":"52f37d24-57d2-4030-977e-fad8bfddf155"}}},"glyph":{"type":"object","name":"Line","id":"f6b7b3bf-c948-4ef2-9b41-b31fb26410c5","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"09647a01-8fa7-4867-9cba-60f446a87b73","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"b1efbb56-02b7-4849-ac1b-c03aec96f8ae","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"5e756ad5-e166-492f-adcc-37b205d4a4cd","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"9fae2987-29f7-4833-8bc3-fe7ed829852a","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"ada25d3d-ae0a-4ebf-8328-10b9b487c5b8","attributes":{"selected":{"type":"object","name":"Selection","id":"5b2fb672-4317-4150-9744-217c11743a93","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"50813fca-9fd0-4ec2-8fc0-12eaf87a2230"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/4s84vpVZ84X+13Sr897Fqs7AAAHYrA6EAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NkYGBQBGIA+nVwSAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"44ab2414-bc32-4253-9ff6-fbcb4a958e0e","attributes":{"filter":{"type":"object","name":"AllIndices","id":"1bc30b5f-4da3-4f17-8f48-54d0d3ea203f"}}},"glyph":{"type":"object","name":"Line","id":"ef2ee505-4df5-49d0-a6db-06bb2ce2eb88","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"4c0da3af-cd51-438c-9ab4-01111cb4fd0b","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"1dc6a670-691a-46f0-9578-f53e799e8a05","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"ce477f60-e537-4d49-a73f-457eccff4c56","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"02698c2c-27a5-492f-acc4-ba9668abcdcb","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"0502a313-865d-4eab-816d-55452ad086e2","attributes":{"selected":{"type":"object","name":"Selection","id":"5ae4900f-c23b-4c7b-b8a1-1a8aeb3858aa","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"c161fdfb-cb69-4d34-aeb7-4eabc73643bb"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/wu7U8d90fSbfUy6aMv0fxoOALsa8qkQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NiYGBQAmIA991K1AgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"628bccd1-bb9b-4bb8-b930-3bcb948d0da5","attributes":{"filter":{"type":"object","name":"AllIndices","id":"b8e57ace-95ce-4a7e-b9da-1fe0ca7b26e2"}}},"glyph":{"type":"object","name":"Line","id":"f6f66101-b98d-4f2d-be6e-78dfcc20f754","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"8092b3ef-cb7b-4e22-b376-fcac9b96098d","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"9a29739e-6209-4908-b2d4-42a2c8ae197b","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"c1793ec2-8549-483d-b857-8028f1bb9e82","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"372bdab0-a98f-4681-818b-d6568f165db3","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"6c613bc0-6780-462b-9d1f-562bd48a91f8","attributes":{"selected":{"type":"object","name":"Selection","id":"00ad4069-93df-462a-9998-03383aa755b5","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"94139951-01a3-48c3-9e79-89801d4134ad"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9MqeHvr+v3v9skKjG+Upmg5AAAb8SzLEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NmYGBQBmIADLpcoAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"33e7acfa-1b7b-4d7e-8af2-8ff8f0c35ae9","attributes":{"filter":{"type":"object","name":"AllIndices","id":"6e510080-07b1-4bef-b40a-f5a4269f3830"}}},"glyph":{"type":"object","name":"Line","id":"0939343c-fd13-4bf2-aec7-85ba3fa61b4a","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"18e37b98-f462-4f94-a080-a8f727032922","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"dfedb10b-b57f-40fd-8fd0-ce247ce3fcbe","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"4f483103-59ec-47b6-848e-452fbd9ab0e1","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"92231888-709d-49f2-8e2a-b3f97128d14f","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"f57ae8e7-b420-44f6-a25d-fef5711118af","attributes":{"selected":{"type":"object","name":"Selection","id":"41b21ba4-1034-42d8-ad7e-ccd26f2b0c7f","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"052a53dd-fe60-4168-991c-4d817e200c6e"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA//vPHLPqXudP++NLf29lsdBxAAAv2odYEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NhYGBQAWIArItONwgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"8f4c6fb1-9779-4ab7-8b45-564d6d663c10","attributes":{"filter":{"type":"object","name":"AllIndices","id":"e16ae639-64b7-44ab-8159-f5d3aaa804ef"}}},"glyph":{"type":"object","name":"Line","id":"d93c724d-edd2-4789-b3b5-033f8511b37c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"30a82199-44f9-4e8b-84f5-5941ddefabeb","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"3c6e1d57-0efa-4ced-8d3b-694290629057","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"381ab91d-2ec6-4685-9439-34c6f70f513c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"fdc14a2c-7269-4aa0-a222-6bb3ff726792","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"6f4bfdca-153b-4eec-9bff-1db418034ddb","attributes":{"selected":{"type":"object","name":"Selection","id":"d3514c7d-178e-428a-bc14-58bfea91788a","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"a50beab3-9357-4765-9b57-1921a81f214f"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1slzGDs4fLbvv07yyObV7oOAASXYIwQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NlYGBQBWIAV+xYQwgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"60ba6429-9a09-45f1-b65a-6f19e0977581","attributes":{"filter":{"type":"object","name":"AllIndices","id":"7d23a06d-18d3-4d1a-ba98-7ee4e8b73ebc"}}},"glyph":{"type":"object","name":"Line","id":"4f39427d-b7fd-4235-b948-ff876114c7b2","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"aaef3812-dde6-464b-b0e1-b35b5d7edabd","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"736873c2-29a3-4169-99ac-e6d4b970fcf4","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"c760c368-bb76-40a6-a420-0b599eb4b980","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"af56aa2d-1744-4916-8e06-a823cbbafc8e","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"8f0e5f90-c60a-4333-aad5-b893e4790f88","attributes":{"selected":{"type":"object","name":"Selection","id":"af7920ad-ca80-4ee7-aa5d-e7d9e0a7f696","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"b67fdcc9-0b71-48de-83ea-9d525ab82ec3"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2OW5tcrl/9r/7VIS+qesIEDAEazZQgQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NjYGBQA2IAWkRi3wgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"827d1744-6311-4d45-8b8c-5a5b75aab1c3","attributes":{"filter":{"type":"object","name":"AllIndices","id":"dc6431e1-841b-4cd8-a849-739098775770"}}},"glyph":{"type":"object","name":"Line","id":"ea9dca83-e3bc-4f27-8aa3-3768b17cc91c","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"32a8f92c-f337-4210-b759-7852aee7a091","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"9dfa555f-133a-4b09-8b32-0514d9c43c61","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"f9eac486-880f-479b-982f-f49ef7f34278","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"b7e5a9e5-9683-4997-aaa0-c8eafc14235b","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"14450151-9f4b-49a0-ad55-99b0fab7b678","attributes":{"selected":{"type":"object","name":"Selection","id":"ab9e8399-62cc-4ce9-b71a-6900e4927716","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"56997787-6492-46e3-9927-7a3d29c0528a"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/zOeF/yIg/u/fbyf6+FqJkMHAGcTmRUQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NnYGBQB2IAoSN0qwgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"677a858b-ab05-4155-8a9a-2e0fb562d139","attributes":{"filter":{"type":"object","name":"AllIndices","id":"0b362472-5407-4e4f-a8da-a902f6157269"}}},"glyph":{"type":"object","name":"Line","id":"84834ffd-a470-4cae-be21-65f8d21079c2","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"47cfd0ce-375d-4cf6-95a3-a7ea52858cd0","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"4bbf2afa-4bd7-4627-9679-ad9786b5fd3e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"0ec54334-008d-4571-ae9a-0fa090a4863a","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"181182f7-07e8-4745-b84c-2bec4f0bf4b2","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"fbfd002a-bcfc-4667-adb2-929b002dd5a4","attributes":{"selected":{"type":"object","name":"Selection","id":"43301e8d-1385-4d0e-a841-c3dc27c84ac8","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"0545d21c-b1ae-490c-ac6f-bc44f48ae0c8"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9so4OPtW83g8L0/fa7LD0MHAM01tp8QAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9NgYGDQAGIAWyE3KggAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"9456b2f3-60f2-4219-8479-0b99c68105e0","attributes":{"filter":{"type":"object","name":"AllIndices","id":"8fcbb56a-5d46-4d8f-b4b0-e6299e6dad25"}}},"glyph":{"type":"object","name":"Line","id":"79984dd0-9d27-4cf4-b7ed-dc38c335a1d7","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"2980d4e3-4f60-4c4b-bbeb-5e574ef87712","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"8e86512a-9a4a-45b0-bd43-c4eaa6d4f130","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"8bc9a7ae-7520-430b-bffc-3da35ce1fe40","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"f9c846f4-9f3e-47d6-9dcf-f803426f93cc","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"7122bcb9-f58b-4385-9e82-beb70dca46c3","attributes":{"selected":{"type":"object","name":"Selection","id":"7240a7c2-3e25-485c-aeba-2da2eff3c716","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"96e24a4e-8869-4765-ac2a-80adbc5cb55d"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/zMV4Gxyr2R0+H//b43RFyMHAEf1kSAQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9NkYGDQBGIAoEYhXggAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"3c667c9f-00b6-4572-80b0-6b08e5fdae20","attributes":{"filter":{"type":"object","name":"AllIndices","id":"8dfc5e44-a0c4-42b8-b48f-0412ec792958"}}},"glyph":{"type":"object","name":"Line","id":"972441a3-501e-441c-ba8e-fe9781facf37","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"a9c72c2a-4d0d-47c2-bb49-f6fc7352c7dc","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"6f4111c0-62ea-44ed-bc12-ec9189f95e3e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"4ed78bf6-cbc8-44b7-b682-d68392ed6f57","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"effedc9d-31d6-438a-b92b-bcddfcd06ccd","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"b42e8e08-6b0f-4e01-98f9-bd633e30761a","attributes":{"selected":{"type":"object","name":"Selection","id":"c7efd7ce-9275-435c-853c-14886cf5dd40","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"ba51a761-6244-4a37-8896-152a87e2785d"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9vBf2yHYzmTQ4UdR5LrN2MHABLpGRAQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9NiYGDQAmIAre4bwggAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"1084038d-501f-4fe0-be33-9e743cdd418a","attributes":{"filter":{"type":"object","name":"AllIndices","id":"b5834973-0d8a-45d1-bbc9-26540c9465eb"}}},"glyph":{"type":"object","name":"Line","id":"80a88804-19d1-4f89-bed2-be09b26b983e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"63041bd2-0e33-4d52-b6b4-ace7d0cd2b9d","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"d02eeb1e-fd4e-4167-8d7a-51eb68d78888","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"f4ae40ea-f452-4edf-b029-13da57e0f5e5","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"1ad49470-d3aa-4cf7-a70f-4d89318b1dff","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"876b2703-5688-4a76-9adb-dd6965cd1b0a","attributes":{"selected":{"type":"object","name":"Selection","id":"8bd0107c-fbd1-45da-b92b-9e92a3265d23","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"bd26a12e-5156-422a-ae91-eef5f177ffbc"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1M/K+uTW8vscDdq7eJOBlMHADPXmvIQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9NmYGDQBmIAVokNtggAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"c740d92c-d9a1-425a-81dd-6468c7d7350d","attributes":{"filter":{"type":"object","name":"AllIndices","id":"1f0d92c2-6a09-4ff8-b46c-5ecb2d8980d2"}}},"glyph":{"type":"object","name":"Line","id":"edb3c99c-5f88-437f-bab8-79e32e952a85","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"f2b7e2a4-1287-400c-a156-7d3872ccf69b","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"efa01969-4c40-436b-9ae6-6de97dee8059","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"c00c3caf-aafe-4fdb-9765-0b269ac64b27","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"23d32bda-7dd3-4b4b-b270-2ebe769c1ee5","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"b83d9fdb-5d85-49c3-8a60-37fb9ca3022a","attributes":{"selected":{"type":"object","name":"Selection","id":"c1fbd08c-6e7d-4ec1-925c-2cf7209ebe8a","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"093fcf17-b7b2-4ff7-9384-ac1065ae1650"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/8tlWz3j92QWh4K7kWI/Bc0cALtat6gQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9NhYGDQAWIA9rgfIQgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"922c873f-f621-4740-9663-ece99e869e0e","attributes":{"filter":{"type":"object","name":"AllIndices","id":"763e17f6-db45-4c2c-997c-e654fa976046"}}},"glyph":{"type":"object","name":"Line","id":"c96b6eb8-3ecc-40ec-9a4d-6916ebff498f","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"555c675a-05cb-41ea-a5ad-ded5bf46b95d","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"5e3933c2-834a-4f1c-aa3a-deb3edee95ff","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"d204954c-32df-4665-ac12-0564db0e4644","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"27e7c224-3114-4156-aca3-aee2ea4393cf","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"c58e0228-78a0-4d92-8cb3-2813c1e9343f","attributes":{"selected":{"type":"object","name":"Selection","id":"1b5e7c3f-6d52-42fe-ae27-232147c872f5","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"bdcdb54e-637b-47b6-8753-1fd8979161c7"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9tsb/G0cxWrwzvZhU9naps7AADo+iu9EAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9NlYGDQBWIADd8JVQgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"c12c7e7f-b177-4895-82f2-ea351e6723c3","attributes":{"filter":{"type":"object","name":"AllIndices","id":"aff4f372-a128-43b8-b487-edcf35a2d024"}}},"glyph":{"type":"object","name":"Line","id":"e791016a-41fe-4e50-a479-c646149812df","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"47890e22-7325-48b3-8bc2-8e918d6368ec","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"666b645d-ab9b-432f-b38b-0ab6152322ee","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"73a3987a-6f50-4186-9da1-58adcb209d94","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"55156f8c-8969-4254-8b10-87e014c92e44","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"a9299012-2759-4b82-9c8f-d1b8bedd3eec","attributes":{"selected":{"type":"object","name":"Selection","id":"6e050ff7-d732-4375-9eed-19d82e528287","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"1b0f87e0-fda6-4fca-b5d6-2734c45316c7"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA//tZcdRQ4iCbw92cmF3x3hYOALBJYCAQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9NjYGDQA2IAAHczyQgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"effd820b-ef93-4273-9997-fc070b2df96c","attributes":{"filter":{"type":"object","name":"AllIndices","id":"21b55821-e87e-4e98-a131-c3a8af9f6df4"}}},"glyph":{"type":"object","name":"Line","id":"20b17c40-93bd-4b8d-a602-c1a740d0d5bf","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"6fd3ac70-595a-40bb-8919-c8b546919203","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"176a9906-4fe7-4150-b16f-a9252b6d37b8","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"19d42adb-480d-4699-8fea-4cd134ed9cef","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"2148f28c-fa9c-4676-bd82-baf51111ac8b","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"def5736f-5982-411e-9bff-168079bc00bd","attributes":{"selected":{"type":"object","name":"Selection","id":"2cdbe285-5744-4332-b158-fc357646bcce","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"d85ed17c-2ea8-4b72-a7e7-1ba11ac46bc2"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/xPT6zDnfMHusL1y0+uwYksHAMEExqcQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/9NnYGDQB2IA+xAlvQgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"d553d64a-667a-4cb7-9ef3-324e8d753f43","attributes":{"filter":{"type":"object","name":"AllIndices","id":"86cdc5aa-07d8-4a04-8d72-4bed9a2cee3c"}}},"glyph":{"type":"object","name":"Line","id":"e8700d98-f593-4ccf-bd10-68161eb4bba7","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"ad92643d-b4c1-4813-bd74-1fe86761efda","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"caf9aead-7fd3-4da4-9409-f68cb7a84747","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"bcdd5a1a-4a6c-43d8-8344-a171b1e96985","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"e9cddf1d-f985-475d-a99f-d9296255a739","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"59958601-78f4-448e-a68f-0f56a4e2b3e6","attributes":{"selected":{"type":"object","name":"Selection","id":"69d42cc7-35ce-427e-b73a-6b0297f334f8","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"28ee79eb-ff61-4977-9b67-bdf5abe77acf"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/6tP8AzKU2Vz+PH55IXupVYOABuRgOwQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/zNgYGAwAGIAtXTEEAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"440236a0-d7f8-4c1a-9671-adee7f6530bc","attributes":{"filter":{"type":"object","name":"AllIndices","id":"65f07c19-0b9b-4050-b040-1f4c4eb3d40b"}}},"glyph":{"type":"object","name":"Line","id":"0e41ef7f-64d8-4e66-b5e5-150b70e51262","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"92f11ae0-a84d-4aa2-bbea-42865b42a416","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"467a85c0-cc98-4558-a861-0e55df559e2e","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"01e6b59a-a2d8-4e18-90a2-67a2d8c867a4","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"cd6a7cfd-b256-4191-973c-f8aafac66aa2","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"a6384e5c-fb5e-4dbd-8de4-eebac2b1785a","attributes":{"selected":{"type":"object","name":"Selection","id":"c7433fb4-49e8-4367-9b1c-4678917e5d36","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"fda64ba9-2427-4c3a-b964-51db20cbe41d"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/zs689q8P9bsDitrQnc/vWvtAACpPUXXEAAAAA=="},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/zNkYGAwBGIAThPSZAgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"0f7c0114-9244-4f90-a60d-03f05c964d0a","attributes":{"filter":{"type":"object","name":"AllIndices","id":"35f574f1-2641-4783-a56d-ac22bc98adaf"}}},"glyph":{"type":"object","name":"Line","id":"0738be60-9642-45bb-9732-6e08c1e5f2f9","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"68f87aa2-3fc4-4109-be51-9b7d455433a7","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"bdbc9748-fd26-455d-ab9d-515cc9ed41a2","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"1a451144-d43c-4bf5-83ce-ea125fe2b9a1","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"cc2673a4-8b76-4185-a16e-c2b5641dcb86","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"4fd0f927-e9b1-4d3f-b3d6-61c821ebb0b8","attributes":{"selected":{"type":"object","name":"Selection","id":"90b71e8a-1a88-466f-9391-aea9ccdd9930","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"ce325b09-6e61-4c79-a325-a256ed7c2518"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA//s24Z/7nigOh47sF9eyZG0dAEbkAdsQAAAA"},"shape":[2],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/zNiYGAwAmIAQ7vo+AgAAAA="},"shape":[2],"dtype":"int32","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"abe710b2-f857-407d-b9cd-0926e4ef567c","attributes":{"filter":{"type":"object","name":"AllIndices","id":"dc25b0b8-82fa-49e4-82c0-aadd3a755020"}}},"glyph":{"type":"object","name":"Line","id":"39a9ae10-608b-4bde-8fc0-4d3b9e05e349","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"selection_glyph":{"type":"object","name":"Line","id":"2a6331a5-24fe-4291-aedc-07e7ad88b5f3","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"}}},"nonselection_glyph":{"type":"object","name":"Line","id":"453f50ab-fba9-4eb9-9677-dcf289a96308","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"462593ac-b3f0-4b8e-a860-bc6a3ec1be75","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"line_alpha":0.2}}}},{"type":"object","name":"GlyphRenderer","id":"ca8df35f-473c-4496-be5d-2f1813464628","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"17aaf69c-c4bd-44ee-8dd2-5c7e6a0469ed","attributes":{"selected":{"type":"object","name":"Selection","id":"fbf5fc32-9a23-4e57-9a65-133490c3bb43","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"1751d5ca-a426-4e93-a986-687b37747670"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/z3S+zsVdgDHcXGG02EO4oQpl8xdnINzOPL9uNVEhDF5TqWsedyiHYYRozzYYjzunlhKirWeMcNzrAclnlIuWfa4HKe5bK4hx13sabd/4PX54f1x6/BSd65cJHHneibiDcXEKGp+6DfRGlGYUY3Undoidw1p4u39Eqh8HqjCT5ZE7PzsgtsqBeuUMbuZrE4isK/zTqqSgZfcElsthAqdpmLN9nvPSJFL0tU7yXvx/hesL1fq5eD2904vWW+Z+X09Ux6dcrrTdXJ02ClcWeDG9JONWLP0G2fosF9zHSwaVoSpf3076+gA6aaV+d2RVULW6apUkUD5X3+EfDo4zHXsUkY+T2uxv0EFDiL6o2WHV+TBqxnrS1UqOFMQyud1MXDpvG9smukYGX+YWKJRyMC0TJpc/LoaPIWU8hGbCfIyOTfIoVQN7PrIZkP7DzDseZC98dkfpIBhWDBWpwFvrrDPt/gA9gkqHYfrp4jqdM4IY0ITeaaWfkXpWtjWKGhN1Z0ldU8fuEzs08LpoXPdJ3q0kRuz+ONC3Twh2eKTmw7aoFbGenno6iI0aJiaa7FI7l9UDg5I0MG16YdZtemHMC4TLZYrXSI7YeoZlDZdxFzvuey9qgemgWPxrNIyqR8Y483R9SDQmO1x5evjVLvLisl1Mem9Hz6pGPYheMEqV4t2DOA3kkTrs1ol3bdG41L69BGktWdOJ98I/3VlSiu1mjkaovP21s8Ujgl2pXg1o5kb5I3lxyHMNiOkr70La4oaZQnWR85bRK3vkw7+cRPcVNGM6qo5DCkNBbPYg2/JyudG6qPK5tD62slsV2SKk3ezKS+azcEq9xmTpe2Ssx4ujxIkLUANZFT8mnIY28aqqSHVFqilu7udSJDA2rfBZc7rFrjnNTC+XGiO/AgOj/kdE1Z0auqx+D3YFb1NZIqZILXN/WYxFhBd4NLVS1loUuhocoiVRJy97HmXVRbSOlPKMvyZ6OeHu9uUW0L/uaZ7xGUpCAN+uJUpYYVNJ89ieScW/vmFFSKkvy/eyqMgSnhKdUPRGqPdOcWNLEvk0ShJQw3W+IlwJjNr3sNrzYrJEmM2lloGn1wztoKPuFE7poeNjbjHFvvbpCEM5wnOunHQGCz18isDa6TNip5avuZA1SyDTZ2SQWN83awf3+Z/Z6gpuqVQgo2KGzd79VRsceAdz6BifflJ7ze3bZEc6Op9UU8aPrZH9UetOPBhJFdWS3Iw1xwu4+jEhdILoX+yx15UJ/o2Twq5OGSSqPRGRMPjkoHyba4MQuWfOTq42GBzOEfwJ80GF47YR2bG2WGpNSqakk1DRtjUQKjmEfDdjzf0+stjNWfn2C8BsvgLeQ7ttwAEAAA="},"shape":[128],"dtype":"float64","order":"little"}],["Z",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/3XJNw7DQBTEUPXO2XLOOd//cGZhAlNYxcNy/taKoqijgSZaaKPz0+VVj1af1oDWkNaI1phWSWtCa0prRmtOa0FrSWtFa01rQ2tLa0drT+tApyM7ndjpzE4Xdrqy042d7uz0YKcnO73Y/7y5V/nwV+ULQsdHlwACAAA="},"shape":[128],"dtype":"int32","order":"little"}],["color",["lavenderblush","lawngreen","lemonchiffon","lightblue","lightcoral","lightcyan","lightgoldenrodyellow","lightgoldenrodyellow","lightgreen","lightgreen","lightgreen","lightgrey","lightgrey","lightgrey","lightpink","lightpink","lightpink","lightsalmon","lightsalmon","lightsalmon","lightseagreen","lightseagreen","lightseagreen","lightskyblue","lightskyblue","lightskyblue","lightslategrey","lightslategrey","lightslategrey","lightsteelblue","lightsteelblue","lightsteelblue","lightyellow","lightyellow","lightyellow","lime","lime","lime","limegreen","limegreen","limegreen","linen","linen","linen","magenta","magenta","magenta","maroon","maroon","maroon","mediumaquamarine","mediumaquamarine","mediumaquamarine","mediumblue","mediumblue","mediumblue","mediumorchid","mediumorchid","mediumorchid","mediumpurple","mediumpurple","mediumpurple","mediumseagreen","mediumseagreen","mediumseagreen","mediumslateblue","mediumslateblue","mediumslateblue","mediumspringgreen","mediumspringgreen","mediumspringgreen","mediumspringgreen","mediumturquoise","mediumturquoise","mediumturquoise","mediumturquoise","mediumvioletred","mediumvioletred","mediumvioletred","mediumvioletred","midnightblue","midnightblue","midnightblue","midnightblue","mintcream","mintcream","mintcream","mintcream","mistyrose","mistyrose","mistyrose","mistyrose","moccasin","moccasin","moccasin","moccasin","navajowhite","navajowhite","navajowhite","navajowhite","navy","navy","navy","navy","oldlace","oldlace","oldlace","oldlace","olive","olive","olive","olive","olive","olive","olivedrab","olivedrab","olivedrab","olivedrab","olivedrab","olivedrab","olivedrab","orange","orange","orange","orange","orange","orange","orange"]],["size",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/+NiYGDgwoGZoeIgmtpsFiQzBysb5meY+wYLnw0YdshugrkLmzghOQCV5ZUWAAIAAA=="},"shape":[128],"dtype":"int32","order":"little"}],["name",["Sodium","Magnesium","Aluminum","Silicon","Phosphorus","Sulfur","Chlorine","Chlorine","Argon","Argon","Argon","Potassium","Potassium","Potassium","Calcium","Calcium","Calcium","Scandium","Scandium","Scandium","Titanium","Titanium","Titanium","Vanadium","Vanadium","Vanadium","Chromium","Chromium","Chromium","Manganese","Manganese","Manganese","Iron","Iron","Iron","Cobalt","Cobalt","Cobalt","Nickel","Nickel","Nickel","Copper","Copper","Copper","Zinc","Zinc","Zinc","Gallium","Gallium","Gallium","Germanium","Germanium","Germanium","Arsenic","Arsenic","Arsenic","Selenium","Selenium","Selenium","Bromine","Bromine","Bromine","Krypton","Krypton","Krypton","Rubidium","Rubidium","Rubidium","Strontium","Strontium","Strontium","Strontium","Yttrium","Yttrium","Yttrium","Yttrium","Zirconium","Zirconium","Zirconium","Zirconium","Niobium","Niobium","Niobium","Niobium","Molybdenum","Molybdenum","Molybdenum","Molybdenum","Technetium","Technetium","Technetium","Technetium","Ruthenium","Ruthenium","Ruthenium","Ruthenium","Rhodium","Rhodium","Rhodium","Rhodium","Palladium","Palladium","Palladium","Palladium","Silver","Silver","Silver","Silver","Cadmium","Cadmium","Cadmium","Cadmium","Cadmium","Cadmium","Indium","Indium","Indium","Indium","Indium","Indium","Indium","Tin","Tin","Tin","Tin","Tin","Tin","Tin"]],["marker",["circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"]],["Line",["Na_Ka","Mg_Ka","Al_Ka","Si_Ka","P_Ka","S_Ka","Cl_Ka","Cl_Ln","Ar_Ka","Ar_Kb","Ar_Ln","K_Ka","K_Kb","K_Ll","Ca_Ka","Ca_Kb","Ca_Ln","Sc_Ka","Sc_Kb","Sc_Ll","Ti_Ka","Ti_Kb","Ti_La","V_Ka","V_Kb","V_La","Cr_Ka","Cr_Kb","Cr_La","Mn_Ka","Mn_Kb","Mn_La","Fe_Ka","Fe_Kb","Fe_La","Co_Ka","Co_Kb","Co_La","Ni_Ka","Ni_Kb","Ni_La","Cu_Ka","Cu_Kb","Cu_La","Zn_Ka","Zn_Kb","Zn_La","Ga_Ka","Ga_Kb","Ga_La","Ge_Ka","Ge_Kb","Ge_La","As_Ka","As_Kb","As_La","Se_Ka","Se_Kb","Se_La","Br_Ka","Br_Kb","Br_La","Kr_Ka","Kr_Kb","Kr_La","Rb_Ka","Rb_Kb","Rb_La","Sr_Ka","Sr_Kb","Sr_La","Sr_Kb","Y_Ka","Y_Kb","Y_La","Y_Kb","Zr_Ka","Zr_Kb","Zr_La","Zr_Kb","Nb_Ka","Nb_Kb","Nb_La","Nb_Kb","Mo_Ka","Mo_Kb","Mo_La","Mo_Kb","Tc_Ka","Tc_Kb","Tc_La","Tc_Kb","Ru_Ka","Ru_Kb","Ru_La","Ru_Kb","Rh_Ka","Rh_Kb","Rh_La","Rh_Kb","Pd_Ka","Pd_Kb","Pd_La","Pd_Kb","Ag_Ka","Ag_Kb","Ag_La","Ag_Kb","Cd_Ka","Cd_Ka","Cd_Kb","Cd_La","Cd_Kb","Cd_Ll","In_Ka","In_Ka","In_Kb","In_La","In_Kb","In_Lb","In_Ll","Sn_Ka","Sn_Ka","Sn_Kb","Sn_La","Sn_Kb","Sn_Lb","Sn_Ll"]]]}}},"view":{"type":"object","name":"CDSView","id":"fbec589b-96d8-4eec-af55-03896583a7b1","attributes":{"filter":{"type":"object","name":"AllIndices","id":"cd085931-be7f-49be-93ac-db7278022c6c"}}},"glyph":{"type":"object","name":"Scatter","id":"d2d1000b-6afc-4900-a82c-f9be58a3418f","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"size":{"type":"field","field":"size"},"fill_color":{"type":"field","field":"color"},"hatch_color":{"type":"field","field":"color"}}},"selection_glyph":{"type":"object","name":"Scatter","id":"936ce9d3-a692-457b-a913-513bb81f50aa","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"size":{"type":"field","field":"size"},"fill_color":{"type":"field","field":"color"},"hatch_color":{"type":"field","field":"color"}}},"nonselection_glyph":{"type":"object","name":"Scatter","id":"daeb7099-0e8b-4645-b9c8-8e2fccffb9ed","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"size":{"type":"field","field":"size"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.1},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.1}}},"hover_glyph":{"type":"object","name":"Scatter","id":"dee08dc2-ef56-4696-9a1c-e0d641daa546","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"size":{"type":"field","field":"size"},"fill_color":{"type":"field","field":"color"},"hatch_color":{"type":"field","field":"color"}}},"muted_glyph":{"type":"object","name":"Scatter","id":"a7ddb843-73fd-4bd0-8267-77070c5f4db7","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Z"},"size":{"type":"field","field":"size"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.2},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.2}}}}},{"type":"object","name":"GlyphRenderer","id":"7f6e8ece-c40b-46ee-813b-52f8b046703b","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"dea71461-464d-46cc-8198-17943a58a34e","attributes":{"selected":{"type":"object","name":"Selection","id":"529ea486-d3ea-4b52-8a0b-1b7a1d48587a","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"2e28d4a9-07ab-4e75-9478-1472b05d9472"},"data":{"type":"map","entries":[["Energy",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/y3SSYoUQRiA0XCeWm3btudua57neaTqAJ5Dr+E10mvkyiMI6cqVO0FIEFwoiiiKSJvv3xQV8eKrIKgQsnkVXc7rTfb5ZjMaXs47399vMvXB+sfNi+eXk9r/tHmbXM5n7ov1r/w3+9+d+8H95H5xv7k/3F8ubLN+2Gb3u7LNfv/qNrvntW12v+vcde4Gd5O7xd3mbnN3uLvcPW6H2+Hucw+4h9yu9V1+d/v/+YaPnHvE7XF73J7OY+4xt8/tc/vcE+4Jd8AdcAfcIXfIHXFH3BF3zB1zJ9wJd8KdcqfcGXfGnXHn3Dl3wV1wF9xT7imX8145Pmc/51yOy3N5Ls/luTxX4ApcgStwBa7oPkWuyBW5IlfiSlyJK3ElrsyVuTJX5spchatwFa7CVbgqV+WqXJWrcjWuxtW4Glfj6lydq3N1rs41uAbX4Bpcg2tyTa7JNbkm1+JaXItrcS2uzbW5Ntfm2lyH63AdrsN1uC7X5bpcl+tyvWz9uOd/08v2n/Wc62XuJRdxMZdwKRf6en29vl5fr6/HRVzMJVzKhYHeQG+gN9Ab6HERF3MJl3JhqDf0PkO9od5Qj4u4mEu4lAsjvZHeSG+kN9LjIi7mEi7lwlhvrDfWG+uN9biIi7mES7kw0ZvoTfQmehM9LuJiLuFSLkz1pnpTvaneVI+LuJhLuJQLM72Z3kxvpjfT4yIu5hIu5cJcb64315vrzfW4iIu5hEu5sNBb6C30FnoLPS7iYi7hUi4s9ZZ6S72l3lKPi7iYS7iUCyu9ld5Kb6W30uMiLuYSLuXCWm+tt9Zb6631uIiLuYRL19t/YLKkUGAJAAA="},"shape":[300],"dtype":"float64","order":"little"}],["Element",{"type":"ndarray","array":{"type":"bytes","data":"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"},"shape":[300],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"eeab1ca9-d7b9-4da1-b052-8fd561f80220","attributes":{"filter":{"type":"object","name":"AllIndices","id":"1940aa60-bddf-4537-ba5c-a477b05f9c21"}}},"glyph":{"type":"object","name":"Line","id":"4327755d-b5f9-4dd3-8a87-78188c2a4ca2","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Element"},"line_color":"red","line_width":2}},"selection_glyph":{"type":"object","name":"Line","id":"d90ef04a-315a-40c9-8d6d-75e608cb59d9","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Element"},"line_color":"red","line_width":2}},"nonselection_glyph":{"type":"object","name":"Line","id":"e04ae5b9-0b4e-4637-92f9-4e02dc8e2218","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Element"},"line_color":"red","line_alpha":0.1,"line_width":2}},"muted_glyph":{"type":"object","name":"Line","id":"f0401f94-a088-4836-9ca6-c9c9bfca4dde","attributes":{"tags":["apply_ranges"],"x":{"type":"field","field":"Energy"},"y":{"type":"field","field":"Element"},"line_color":"red","line_alpha":0.2,"line_width":2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"22d76873-d429-4e9e-852a-eac954d6e39f","attributes":{"tools":[{"type":"object","name":"WheelZoomTool","id":"2ee7e9cf-d8b2-4efd-8abb-fdac31dfc7a8","attributes":{"tags":["hv_created"],"renderers":"auto","zoom_together":"none"}},{"type":"object","name":"HoverTool","id":"3d9d2f4f-0204-4a27-879b-958db5957f01","attributes":{"renderers":[{"id":"ca8df35f-473c-4496-be5d-2f1813464628"}],"tooltips":[["element","@name"],["Line","@Line"],["Energy (keV)","@Energy"]],"sort_by":null,"attachment":"vertical"}},{"type":"object","name":"SaveTool","id":"2c1daae2-7c4a-4caf-ab5a-cc05a1f00b57"},{"type":"object","name":"PanTool","id":"be110439-aeb1-49cf-af9b-951bfb7df9f5"},{"type":"object","name":"BoxZoomTool","id":"0f15d435-b4cd-4b5d-a465-c5ff9a93d9da","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"a82579d7-a136-44ab-ab65-3009d3bce286","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"69cd1d18-a79a-401d-8d2a-d724f449a7b6","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"555baa92-4836-4568-a557-efd9d35e1b92","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"ResetTool","id":"387fc88c-965a-470b-8cd0-a583b877f95d"}],"active_drag":{"id":"be110439-aeb1-49cf-af9b-951bfb7df9f5"},"active_scroll":{"id":"2ee7e9cf-d8b2-4efd-8abb-fdac31dfc7a8"}}},"left":[{"type":"object","name":"LinearAxis","id":"f3343f04-7611-4915-8dd3-4d0e0a4a955a","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"c05750e4-bf4a-4ba9-b14d-abddce7fb0d0","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"3596c3c0-1c15-48b2-9c2a-d8195185f900"},"axis_label":"Atomic number (Z)","major_label_policy":{"type":"object","name":"AllLabels","id":"da910fa7-87e8-4688-b61c-db8d6f0df0cf"}}}],"below":[{"type":"object","name":"LinearAxis","id":"2400618b-f9ef-4efc-ad27-b710ee74f732","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"a7f5bb09-4d52-43b2-8de5-3b1abc521b3e","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"07fe7c10-6934-45e2-9b84-e494c9042cf4"},"axis_label":"Energy (keV)","major_label_policy":{"type":"object","name":"AllLabels","id":"64485f7c-a284-4b96-985e-d7b607c0f910"}}}],"center":[{"type":"object","name":"Grid","id":"4a579a85-277c-4786-a455-2d8bd8916565","attributes":{"axis":{"id":"2400618b-f9ef-4efc-ad27-b710ee74f732"},"ticker":{"id":"a7f5bb09-4d52-43b2-8de5-3b1abc521b3e"},"grid_line_color":"gray","minor_grid_line_color":"lightgray"}},{"type":"object","name":"Grid","id":"b7c70740-5277-452d-b4a7-49aff6c213fc","attributes":{"dimension":1,"axis":{"id":"f3343f04-7611-4915-8dd3-4d0e0a4a955a"},"ticker":{"id":"c05750e4-bf4a-4ba9-b14d-abddce7fb0d0"},"grid_line_color":"white","grid_line_alpha":0}}],"min_border_top":10,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"output_backend":"webgl"}},{"type":"object","name":"Spacer","id":"81410551-778b-4100-ae1c-d543db5db612","attributes":{"name":"HSpacer00500","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  width: calc(min(40px, 300px));\n  height: calc(min(40px, 300px));\n  mask-size: calc(min(40px, 300px)) calc(min(40px, 300px));\n  -webkit-mask-size: calc(min(40px, 300px)) calc(min(40px, 300px));\n}",{"id":"40b1befe-cfa1-473f-a8b5-3112b9cbd351"},{"id":"02477202-bffd-4834-8d69-1a9903a40876"},{"id":"006b891b-8a16-424d-9caf-d194b644d3fd"}],"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start"}}]}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"start","kind":"Any","default":0},{"name":"end","kind":"Any","default":100},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]},{"type":"model","name":"holoviews.plotting.bokeh.raster.HoverModel","properties":[{"name":"xy","kind":"Any","default":null},{"name":"data","kind":"Any","default":null}]}]}};
+  var render_items = [{"docid":"aa962602-ebd5-4745-ab05-54f5fa82936f","roots":{"8e45de2c-0a6d-4419-8370-3caa93cfb459":"ec29e2da-bacc-4098-b6ea-8ddb144e67b9"},"root_ids":["8e45de2c-0a6d-4419-8370-3caa93cfb459"]}];
+  var docs = Object.values(docs_json)
+  if (!docs) {
+    return
+  }
+  const version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
+  async function embed_document(root) {
+    var Bokeh = get_bokeh(root)
+    await Bokeh.embed.embed_items_notebook(docs_json, render_items);
+    for (const render_item of render_items) {
+      for (const root_id of render_item.root_ids) {
+    const id_el = document.getElementById(root_id)
+    if (id_el.children.length && id_el.children[0].hasAttribute('data-root-id')) {
+      const root_el = id_el.children[0]
+      root_el.id = root_el.id + '-rendered'
+      for (const child of root_el.children) {
+            // Ensure JupyterLab does not capture keyboard shortcuts
+            // see: https://jupyterlab.readthedocs.io/en/4.1.x/extension/notebook.html#keyboard-interaction-model
+        child.setAttribute('data-lm-suppress-shortcuts', 'true')
+      }
+    }
+      }
+    }
+  }
+  function get_bokeh(root) {
+    if (root.Bokeh === undefined) {
+      return null
+    } else if (root.Bokeh.version !== version) {
+      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(version)) {
+    return null
+      }
+      return root.Bokeh.versions.get(version);
+    } else if (root.Bokeh.version === version) {
+      return root.Bokeh
+    }
+    return null
+  }
+  function is_loaded(root) {
+    var Bokeh = get_bokeh(root)
+    return (Bokeh != null && Bokeh.Panel !== undefined)
+  }
+  if (is_loaded(root)) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (is_loaded(root)) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 200) {
+          clearInterval(timer);
+      var Bokeh = get_bokeh(root)
+      if (Bokeh == null || Bokeh.Panel == null) {
+            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
+      } else {
+        console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
+        embed_document(root)
+      }
+        }
+      }
+    }, 25, root)
+  }
+})(window);</script>
+</div>
+</div>
+<p>Physics can (sometimes) be simple and beautiful. Thank you, Henry Moseley!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02_a-peak-pattern-atlas.html" class="pagination-link" aria-label="Peak pattern atlas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Peak pattern atlas</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./20_xrf-physics-the-gory-details.html" class="pagination-link" aria-label="XRF physics - the gory details">
+        <span class="nav-page-text">XRF physics - the gory details</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>2026 Rijkserfgoedlaboratorium Amsterdam</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,46 @@
+---
+title: Theoretical peak patterns
+jupyter:
+  jupytext:
+    formats: ipynb,qmd
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.19.6
+  kernelspec:
+    display_name: .venv
+    language: python
+    name: python3
+---
+
+In order to compute a theoretical X-Ray Fluorescence spectrum for a pure element you need to import the `ElementXRF` class and specify the `element` and thickness `h_mm` in millimeters.    
+
+```{python}
+from moseley import ElementXRF
+import matplotlib.pyplot as plt 
+```
+
+Plotting a theoretical X-ray fluorescence spectrum can be done with the `.plot_spectrum()` method. 
+
+```{python}
+# initialize plot 
+fig, axs = plt.subplots(ncols=4, figsize=[15, 4], sharex=True, sharey=False)
+axs = axs.flatten()
+
+# iterate over a list of different sample thicknesses 
+for h_mm, ax in zip([0.001, 0.01, 0.1, 0.5], axs):   
+    Pb_xrf = ElementXRF(element='Pb', h_mm=h_mm) 
+    Pb_xrf.plot_spectrum(facecolor='k', ax=ax, xlim=[1, 17], vlines_colors='r') 
+    ax.set_title(f'Pb (h={h_mm}mm)')  
+    ax.set_xlim(xmax=20)
+```
+
+We can see here that these spectra (blue with black markers) for lead consist of multiple Gaussian shaped peaks. Most of these peaks are the result of closely spaced emission lines (red color). Each emission line corresponds to a specific transition of an electron between different electron shells. Although these patterns for lead samples of different thicknesses look fairly similar, their precise proportions vary. 
+
+
+If you want to inspect emission lines in detail you can take a look the `.lines_table` attribute.  
+
+```{python}
+Pb_xrf.lines_table # 0.5mm 
+```

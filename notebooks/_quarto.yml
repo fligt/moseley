@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: "../docs/"
+  render: 
+    - "*.qmd" 
+
+format:
+  html:
+    theme: default
+    css: custom.css
+
+website:
+  title: "moseley"
+  page-navigation: true
+  navbar:
+    background: primary
+    search: true
+    right: 
+      - icon: github
+        href: "https://github.com/fligt/moseley"
+  sidebar:
+    style: floating
+    contents: auto
+  page-footer: "2026 Rijkserfgoedlaboratorium Amsterdam"
