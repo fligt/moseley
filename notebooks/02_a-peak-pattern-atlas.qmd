@@ -39,3 +39,4 @@ We can now use the `.plot_atlas()` method to create an interactive holoviews plo
 atlas = ppa.plot_atlas()
 atlas
 ```
+

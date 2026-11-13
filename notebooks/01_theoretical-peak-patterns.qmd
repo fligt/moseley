@@ -2,19 +2,16 @@
 title: Theoretical peak patterns
 jupyter:
   jupytext:
-    formats: ipynb,qmd
     text_representation:
       extension: .qmd
       format_name: quarto
       format_version: '1.0'
       jupytext_version: 1.19.6
   kernelspec:
-    display_name: .venv
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
-
-In order to compute a theoretical X-Ray Fluorescence spectrum for a pure element you need to import the `ElementXRF` class and specify the `element` and thickness `h_mm` in millimeters.    
 
 ```{python}
 from moseley import ElementXRF
@@ -42,5 +39,6 @@ We can see here that these spectra (blue with black markers) for lead consist of
 If you want to inspect emission lines in detail you can take a look the `.lines_table` attribute.  
 
 ```{python}
-Pb_xrf.lines_table # 0.5mm 
+Pb_xrf.lines_table # 0.5 mm 
 ```
+
