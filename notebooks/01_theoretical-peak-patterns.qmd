@@ -14,6 +14,8 @@ jupyter:
 ---
 
 
+> Can you see the pattern? 
+
 ```{python}
 from moseley import ElementXRF
 import matplotlib.pyplot as plt 
@@ -42,4 +44,3 @@ If you want to inspect emission lines in detail you can take a look the `.lines_
 ```{python}
 Pb_xrf.lines_table # 0.5 mm 
 ```
-

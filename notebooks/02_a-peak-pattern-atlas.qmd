@@ -13,6 +13,7 @@ jupyter:
     name: python3
 ---
 
+
 ```{python}
 from moseley import PeriodicTable, PeakPatternAtlas
 import holoviews as hv 
@@ -36,7 +37,6 @@ ppa = PeakPatternAtlas()
 We can now use the `.plot_atlas()` method to create an interactive holoviews plot.  
 
 ```{python}
-atlas = ppa.plot_atlas()
-atlas
+ppa.plot_atlas(return_ax=True)
 ```
 

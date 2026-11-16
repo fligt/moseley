@@ -14,7 +14,7 @@
 # ---
 
 # %% ../notebooks/02_a-peak-pattern-atlas.ipynb #a75699df-b6ca-47a7-b4e0-18b01e56579b
-# peak_pattern_atlas 
+# peak_pattern_atlas.py 
 
 # Periodic Table 
 import mendeleev as mv 
@@ -53,7 +53,7 @@ class PeakPatternAtlas():
 
         for i, element in enumerate(self.EOI):     
             if verbose: 
-                print(f'Please wait while computing spectral pattern for element {i+1}/{len(self.EOI)}...', end='\r') 
+                print(f'Please wait while computing spectral pattern for element {self.EOI[i]} {i+1}/{len(self.EOI)}...', end='\r') 
 
             element_xrf = ElementXRF(element, excitation_energy_keV=excitation_energy_keV, h_mm=h_mm, x_keVs=x_keVs)
             ptrn_dict = element_xrf.ptrn_dict
@@ -77,7 +77,7 @@ class PeakPatternAtlas():
             print('Ready building Peak Pattern Atlas!                                   ') 
 
     
-    def plot_atlas(self, moseley=False): 
+    def plot_atlas(self, moseley=False, return_ax=False): 
         '''Plot holoviews peak pattern atlas from `pattern_dict_list`.''' 
     
         # TODO: add escape and sum peaks 
@@ -153,14 +153,21 @@ class PeakPatternAtlas():
             y_values = Z_list
         else: 
             y_values = elements 
-
-        grid_style = {'xgrid_line_color': 'gray', 'minor_xgrid_line_color': 'lightgray', 'ygrid_line_color': 'white', 'ygrid_line_alpha': 0} 
+            
+        # create quarto plot or matplotlib axes  
+        if not return_ax:     
+            grid_style = {'xgrid_line_color': 'gray', 'minor_xgrid_line_color': 'lightgray', 'ygrid_line_color': 'white', 'ygrid_line_alpha': 0} 
+            
+            curves_list = [hv.Curve(([x0, x1], [y_val, y_val]), kdims=[energy], vdims=y_dim) for x0, x1, y_val in zip(segments_left, segments_right, y_values)]
+            curves = hv.Overlay(curves_list).opts(opts.Curve(color='black', line_width=1, gridstyle=grid_style, show_grid=True)) 
         
-        curves_list = [hv.Curve(([x0, x1], [y_val, y_val]), kdims=[energy], vdims=y_dim) for x0, x1, y_val in zip(segments_left, segments_right, y_values)]
-        curves = hv.Overlay(curves_list).opts(opts.Curve(color='black', line_width=1, gridstyle=grid_style, show_grid=True)) 
-    
-        atlas = curves * scatter 
-        atlas.opts(padding=0.02, frame_width=450, frame_height=500, title='XRF Peak Pattern Atlas')
+            atlas = curves * scatter 
+            atlas.opts(padding=0.02, frame_width=450, frame_height=500, title='XRF Peak Pattern Atlas')
+
+        else: 
+            fig, ax = plt.subplots()
+            atlas = ax
+            
     
         return atlas 
 
