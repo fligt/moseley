@@ -21,7 +21,7 @@ import mendeleev as mv
 from mendeleev.fetch import fetch_table  
 
 #import moseley as mos 
-from . import ElementXRF
+from moseley import ElementXRF
 #from moseley import PeriodicTable
 
 # plotting 
@@ -77,7 +77,7 @@ class PeakPatternAtlas():
             print('Ready building Peak Pattern Atlas!                                   ') 
 
     
-    def plot_atlas(self, moseley=False, return_ax=False): 
+    def plot_atlas(self, moseley=False, ax=None): 
         '''Plot holoviews peak pattern atlas from `pattern_dict_list`.''' 
     
         # TODO: add escape and sum peaks 
@@ -93,7 +93,7 @@ class PeakPatternAtlas():
         min_size, max_size = 3, 10 # markers
         delta_size = max_size - min_size
         
-        df_list = []
+        self.df_list = []
         segments_left = []
         segments_right = []
         elements = [] 
@@ -122,14 +122,14 @@ class PeakPatternAtlas():
                                    color=[color] * n_rows, 
                                    marker=marker_list, 
                                    size=size)) 
-            df_list.append(df) 
+            self.df_list.append(df) 
     
             segments_left.append(float(peaks_x.min()))
             segments_right.append(float(peaks_x.max()))
             elements.append(elem)
             Z_list.append(atomic_number) 
                               
-        ptrns_df = pd.concat(df_list) 
+        ptrns_df = pd.concat(self.df_list) 
     
         # STEP 2
         # create holoviews Scatter and Curves Overlay elements 
@@ -154,8 +154,8 @@ class PeakPatternAtlas():
         else: 
             y_values = elements 
             
-        # create quarto plot or matplotlib axes  
-        if not return_ax:     
+        # create quarto plot   
+        if ax is None:     
             grid_style = {'xgrid_line_color': 'gray', 'minor_xgrid_line_color': 'lightgray', 'ygrid_line_color': 'white', 'ygrid_line_alpha': 0} 
             
             curves_list = [hv.Curve(([x0, x1], [y_val, y_val]), kdims=[energy], vdims=y_dim) for x0, x1, y_val in zip(segments_left, segments_right, y_values)]
@@ -164,9 +164,35 @@ class PeakPatternAtlas():
             atlas = curves * scatter 
             atlas.opts(padding=0.02, frame_width=450, frame_height=500, title='XRF Peak Pattern Atlas')
 
+        # or matplotlib axes 
         else: 
-            fig, ax = plt.subplots()
-            atlas = ax
+            # line segments 
+            for x0, x1, y_val in zip(segments_left, segments_right, y_values): 
+                ax.plot([x0, x1], [y_val, y_val], color='k', linewidth=1) 
+
+
+            # markers 
+            for df, y_val in zip(self.df_list, y_values): 
+                peaks_x = df['Energy']
+                color =  df['color']
+                size = df['size'].values * 5 
+                y_values = [y_val for i in range(len(peaks_x))] 
+                ax.scatter(peaks_x, y_values, color=color, edgecolors='k', zorder=10, s=size) 
+
+            # grid 
+            ax.minorticks_on()
+            ax.grid(axis='x', which='both')
+
+            # axes labels 
+            ax.set_xlabel('Energy (keV)')
+            ax.tick_params(axis='y', labelsize=8)
+                          
+            if moseley: 
+                ax.set_ylabel('Atomic number (Z)')
+            else:
+                ax.set_ylabel('Element')
+            
+            atlas = None 
             
     
         return atlas 

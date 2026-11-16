@@ -13,10 +13,14 @@ jupyter:
     name: python3
 ---
 
+> The forest and the trees
+
+The basic idea of X-Ray Fluorescence is that each chemical element has a unique pattern of emission peaks. Roughly speaking the relative intensity of the emission peaks does not change too much. 
 
 ```{python}
-from moseley import PeriodicTable, PeakPatternAtlas
+from moseley import PeriodicTable, PeakPatternAtlas, ElementXRF
 import holoviews as hv 
+import matplotlib.pyplot as plt
 ```
 
 ```{python}
@@ -28,7 +32,7 @@ table = PeriodicTable()
 table.plot_table();
 ```
 
-We are now in a position to compute our atlas of elemental XRF peak patterns for elements of interest. This will take some 15 seconds. 
+We are now in a position to compute our atlas of elemental XRF peak patterns for elements of interest. This will take some 15 seconds...
 
 ```{python}
 ppa = PeakPatternAtlas()
@@ -37,6 +41,17 @@ ppa = PeakPatternAtlas()
 We can now use the `.plot_atlas()` method to create an interactive holoviews plot.  
 
 ```{python}
-ppa.plot_atlas(return_ax=True)
+ppa.plot_atlas()
+```
+
+In case you want to compare the atlas against another plot (such as a measured or a computed spectrum) it will be more useful to create a matplotlib axes object. This can be done by setting the `ax=` option.  
+
+```{python}
+fig, axs = plt.subplots(nrows=2, sharex=True, figsize=[10, 10])
+ax0, ax1 = axs.flatten()
+ppa.plot_atlas(ax=ax0)
+
+xrf = ElementXRF('Pb') 
+xrf.plot_spectrum(ax=ax1);
 ```
 
