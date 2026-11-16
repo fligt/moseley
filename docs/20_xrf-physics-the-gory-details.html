@@ -272,10 +272,10 @@ window.Quarto = {
 <p>Let’s take a look at to transition probability $ g_{K }$. This the probability that <span class="math inline">\(K_{\alpha}\)</span> radiation will be emitted rather than that of another K line which is given by:</p>
 <p><span class="math display">\[ g_{K\alpha} = \frac{I(K_{\alpha})}{I(K_{\alpha}) + I(K_{\beta}) +...} \tag{Thomsen eq. 6} \]</span></p>
 <p>Starting point for all calculations is an overview of emission lines for the element of interest these can be accessed using the function <code>xray_lines()</code>.</p>
-<div id="34440199" class="cell" data-execution_count="1">
+<div id="ec3e27a5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xraydb  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6f8ba4e4" class="cell" data-execution_count="2">
+<div id="25cedc8f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xraydb.xray_lines(<span class="st">'Fe'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>{'Ka3': XrayLine(energy=6267.4, intensity=0.000276096, initial_level='K', final_level='L1'),
@@ -295,7 +295,7 @@ window.Quarto = {
 </div>
 <p>The names of these lines are denoted in <a href="https://en.wikipedia.org/wiki/Siegbahn_notation">Siegbahn</a> notation (e.g.&nbsp;<em>Ka3</em>, where ‘<em>a</em>’ stands for alpha). The lines are grouped according to their initial level, denoted with the IUPAC notation e.g.&nbsp;‘K’ or ‘L1’. Within these groups the <code>intensities</code> a.k.a. transition probabilities are normalized to unity. The intensity of the <span class="math inline">\(K_{\alpha}\)</span> line is actually a sum of multiple overlapping <code>Ka</code> lines.</p>
 <p>To the <code>xray_lines()</code> function one could provide an additional argument of an <code>excitation_energy</code> (in units of electron Volts [eV]) . This simply crops the list to emission lines below the corresponding edge, like so:</p>
-<div id="c2076633" class="cell" data-execution_count="3">
+<div id="b3f2bf6f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>xraydb.xray_lines(<span class="st">'Fe'</span>, excitation_energy<span class="op">=</span><span class="dv">7111</span>) <span class="co"># just below the K edge at 7112</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>{'Lb4': XrayLine(energy=791.9, intensity=0.413833, initial_level='L1', final_level='M2'),
@@ -308,7 +308,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Let’s see if the iron <span class="math inline">\(K\)</span> intensities sum up to unity.</p>
-<div id="2d5051ec" class="cell" data-execution_count="4">
+<div id="20dfe41c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Fe_lines <span class="op">=</span> xraydb.xray_lines(<span class="st">'Fe'</span>) </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Fe_names <span class="op">=</span> <span class="bu">list</span>(Fe_lines.keys())</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>FeK_names <span class="op">=</span> [name <span class="cf">for</span> name <span class="kw">in</span> Fe_names <span class="cf">if</span> name.startswith(<span class="st">'K'</span>)]</span>
@@ -338,7 +338,7 @@ Fe_K total: 1.0000</code></pre>
 <section id="jump-ratio-coefficient-j_k" class="level3">
 <h3 class="anchored" data-anchor-id="jump-ratio-coefficient-j_k">Jump ratio coefficient <span class="math inline">\(J_K\)</span></h3>
 <p>For each line the initial level corresponds to a specific absorption edge (denoted with IUPAC notation e.g.&nbsp;‘K’ or ‘L1’. An overview can be found using <code>xray_edges()</code>.</p>
-<div id="4c086c54" class="cell" data-execution_count="5">
+<div id="40b2dddc" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xraydb.xray_edges(<span class="st">'Fe'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>{'K': XrayEdge(energy=7112.0, fyield=0.350985, jump_ratio=7.893),
@@ -353,7 +353,7 @@ Fe_K total: 1.0000</code></pre>
 </div>
 </div>
 <p>More convenient, the properties of a specific element edge can be found using the function <code>xray_edge()</code>.</p>
-<div id="a41b0bd7" class="cell" data-execution_count="6">
+<div id="4dd9048f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>xraydb.xray_edge(<span class="st">'Fe'</span>, <span class="st">'K'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>XrayEdge(energy=7112.0, fyield=0.350985, jump_ratio=7.893)</code></pre>
@@ -361,7 +361,7 @@ Fe_K total: 1.0000</code></pre>
 </div>
 <p>From the jump ratio <span class="math inline">\(r_K\)</span> the jump ratio coefficient can be calculated using</p>
 <p><span class="math display">\[ J_K = \frac{r_K -1}{r_K} \tag{Thomsen eq. 4}\]</span></p>
-<div id="9a83d558" class="cell" data-execution_count="7">
+<div id="3487fdfe" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>r_K <span class="op">=</span> xraydb.xray_edge(<span class="st">'Fe'</span>, <span class="st">'K'</span>).jump_ratio</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>J_K <span class="op">=</span> (r_K <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> r_K</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Jump ratio coefficient: </span><span class="sc">{</span>J_K<span class="sc">:.03f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -375,7 +375,7 @@ Fe_K total: 1.0000</code></pre>
 <h3 class="anchored" data-anchor-id="fluorescence-yield-mathbfomega_k">Fluorescence yield <span class="math inline">\(\mathbf{\omega_K}\)</span></h3>
 <p>Thomsen writes: <em>The last factor, the probability of <span class="math inline">\(K\)</span> radiation rather than the production of an Auger electron, is called the fluorescence yield</em> <span class="math inline">\(\omega_K\)</span>. The dependence of the fluorescence yield for a specific edges <span class="math inline">\(K\)</span> and <span class="math inline">\(L\)</span> as a function of the atomic number is depicted in figure 4. Let’s reproduce these curves with <code>xraydb</code>.</p>
 <p>As a first step, we need a list of chemical elements for increasing atomic number <strong>Z</strong>.</p>
-<div id="00cacc59" class="cell" data-execution_count="8">
+<div id="f0205bc0" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Z_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">92</span>))</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>element_list <span class="op">=</span> [xraydb.atomic_symbol(Z) <span class="cf">for</span> Z <span class="kw">in</span> Z_list]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(element_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -383,11 +383,11 @@ Fe_K total: 1.0000</code></pre>
 <pre><code>['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa']</code></pre>
 </div>
 </div>
-<div id="cdb63d62" class="cell" data-execution_count="9">
+<div id="b1f96381" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Z_list_L <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">15</span>, <span class="dv">92</span>)) <span class="co"># Lighter elements do no have an L shell </span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>element_list_L <span class="op">=</span> [xraydb.atomic_symbol(Z) <span class="cf">for</span> Z <span class="kw">in</span> Z_list_L] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4aea57c2" class="cell" data-execution_count="10">
+<div id="73a5dbf4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fyield_K_list <span class="op">=</span> [xraydb.xray_edge(e, <span class="st">'K'</span>).fyield <span class="cf">for</span> e <span class="kw">in</span> element_list]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fyield_L_list <span class="op">=</span> [xraydb.xray_edge(e, <span class="st">'L2'</span>).fyield <span class="cf">for</span> e <span class="kw">in</span> element_list_L]</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -395,10 +395,10 @@ Fe_K total: 1.0000</code></pre>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>Z_Fe <span class="op">=</span> <span class="dv">26</span> </span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>fyield_FeK <span class="op">=</span> xraydb.xray_edge(<span class="st">'Fe'</span>, <span class="st">'K'</span>).fyield</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8f572aae" class="cell" data-execution_count="11">
+<div id="7091c052" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="3615cf84" class="cell" data-execution_count="12">
+<div id="e94ae30d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>[<span class="dv">8</span>, <span class="dv">4</span>]) </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ax.plot(Z_list, fyield_K_list, label<span class="op">=</span><span class="vs">r'K edge $\omega_K$'</span>)</span>
@@ -422,14 +422,14 @@ Fe_K total: 1.0000</code></pre>
 <section id="combining-it-all" class="level3">
 <h3 class="anchored" data-anchor-id="combining-it-all">Combining it all</h3>
 <p>We now have all ingredients to compute a theoretical (excitation) x-ray fluorescence spectrum with the function <code>xrf_spectrum_xy()</code>. This function for each peak multiplies transition probability, jump ratio coefficient and fluorescence yield to obtain a theoretical excitation spectrum. Note that we do not yet take into account absorption effects or scattering effects. For comparison we plot this with the spectrum generated with my <code>moseley</code> package.</p>
-<div id="6d2e8658" class="cell" data-execution_count="13">
+<div id="bbd833c7" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> moseley <span class="im">import</span> ElementXRF </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="70b90436" class="cell" data-execution_count="14">
+<div id="0d97dd28" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Fe_xrf <span class="op">=</span> ElementXRF(<span class="st">'Fe'</span>, excitation_energy_keV<span class="op">=</span><span class="dv">22</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a1ff2c0b" class="cell" data-execution_count="15">
+<div id="7af7c420" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>Fe_xrf.plot_spectrum(ax<span class="op">=</span>ax)</span>
@@ -450,13 +450,13 @@ Fe_K total: 1.0000</code></pre>
 <section id="absorption-and-scattering" class="level2">
 <h2 class="anchored" data-anchor-id="absorption-and-scattering">Absorption and scattering</h2>
 <p>The xraydb documentation gives an example calculation for different mass attenuation cross sections.</p>
-<div id="8586be3e" class="cell" data-execution_count="16">
+<div id="ca0e9dcc" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xraydb <span class="im">import</span> mu_elam </span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xraydb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d295dfd5" class="cell" data-execution_count="17">
+<div id="e289a98d" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> np.arange(<span class="dv">500</span>, <span class="dv">25000</span>, <span class="dv">10</span>)  <span class="co"># energy in eV</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>energy_keV <span class="op">=</span> energy <span class="op">/</span> <span class="dv">1000</span> </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -497,7 +497,7 @@ Fe_K total: 1.0000</code></pre>
 </div>
 </div>
 <p>I would like to see how scattering depends on atomic number <span class="math inline">\(Z\)</span>.</p>
-<div id="1afec03c" class="cell" data-execution_count="18">
+<div id="761c2c14" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Z0 <span class="op">=</span> xraydb.atomic_number(<span class="st">'H'</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Z1 <span class="op">=</span> xraydb.atomic_number(<span class="st">'Pb'</span>) <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>element_list <span class="op">=</span> [xraydb.atomic_symbol(Z) <span class="cf">for</span> Z <span class="kw">in</span> <span class="bu">range</span>(Z0, Z1)]</span>
@@ -506,7 +506,7 @@ Fe_K total: 1.0000</code></pre>
 <pre><code>['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb']</code></pre>
 </div>
 </div>
-<div id="d31897bf" class="cell" data-execution_count="19">
+<div id="0c4777a0" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> np.arange(<span class="dv">500</span>, <span class="dv">25000</span>, <span class="dv">10</span>)  <span class="co"># energy in eV</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>energy_keV <span class="op">=</span> energy <span class="op">/</span> <span class="dv">1000</span>  </span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -517,7 +517,7 @@ Fe_K total: 1.0000</code></pre>
 <pre><code>['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb']</code></pre>
 </div>
 </div>
-<div id="9b78e18e" class="cell" data-execution_count="20">
+<div id="ccb5fa8c" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mu_incoh_list <span class="op">=</span> []</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>mu_coh_list <span class="op">=</span> []</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>mu_photo_list <span class="op">=</span> []</span>
@@ -537,12 +537,12 @@ Fe_K total: 1.0000</code></pre>
 <span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> np.array(mu_photo_list)</span>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> np.array(mu_coh_list) <span class="op">+</span> np.array(mu_incoh_list) <span class="co"># ignore Compton shift </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="58bb0792" class="cell" data-execution_count="21">
+<div id="2e33036c" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> plt.get_cmap(<span class="st">'viridis_r'</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>gradient <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="bu">len</span>(elements))</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> cmap(gradient)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1e844404" class="cell" data-execution_count="22">
+<div id="64c0f243" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig, [ax0, ax1, ax2] <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">3</span>, sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>[<span class="dv">9</span>, <span class="dv">4</span>])</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, mu <span class="kw">in</span> <span class="bu">enumerate</span>(mu_incoh_list): </span>
@@ -577,7 +577,7 @@ Fe_K total: 1.0000</code></pre>
 </div>
 <p>The question now is if we can explain the lead shadow regions in some of light element peak maps. This problem is essentially combining the effects of scattering and absorption of a translucent layer. To calculate reflectance and transmission properties of such a system we can use the results of Kubelka-Munk theory.</p>
 <p>Given the relatively small energy shift due to inelastic (incoherent) scattering, we can simplify the problem by summing elastic (coherent) and inelastic (incoherent) scattering into a single scattering coefficient <span class="math inline">\(S\)</span>.</p>
-<div id="00b23909" class="cell" data-execution_count="23">
+<div id="bf830213" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R_inf(K, S): </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''Infinite reflectance from `K` and `S`.</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
@@ -587,16 +587,16 @@ Fe_K total: 1.0000</code></pre>
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Rinf </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="469b7a1f" class="cell" data-execution_count="24">
+<div id="04a833a5" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>Rinf <span class="op">=</span> R_inf(K, S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e86eaaaf" class="cell" data-execution_count="25">
+<div id="f94eeaa7" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Rinf.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>(82, 2450)</code></pre>
 </div>
 </div>
-<div id="035ab3b4" class="cell" data-execution_count="26">
+<div id="b63b46f5" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>extent <span class="op">=</span> [energy_keV.<span class="bu">min</span>(), energy_keV.<span class="bu">max</span>(), Z0, Z1]</span>
@@ -619,12 +619,12 @@ Fe_K total: 1.0000</code></pre>
 </div>
 <p>What we learn here is that the Compton ridge is essentially only due to the abundance of hydrogen in the paper. The scattering of carbon and oxygen can safely be neglected.</p>
 <p>Next step is the calculation of the transmission of a typical ( <span class="math inline">\(200 ~ g/m^2\)</span>) paper…</p>
-<div id="e3b2d9a2" class="cell" data-execution_count="27">
+<div id="0f126a38" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mu_paper <span class="op">=</span> xraydb.material_mu(<span class="st">'C6H12O6'</span>, energy, <span class="fl">0.5</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>mu_lead <span class="op">=</span> xraydb.material_mu(<span class="st">'PbCO3'</span>, energy, <span class="dv">20</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>mu_iron <span class="op">=</span> xraydb.material_mu(<span class="st">'Fe'</span>, energy, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c7f3b5c3" class="cell" data-execution_count="28">
+<div id="c9b63533" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>d_paper <span class="op">=</span> <span class="fl">0.5</span> <span class="co"># mm </span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>d_lead <span class="op">=</span> <span class="fl">0.001</span> <span class="co"># mm </span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>d_iron <span class="op">=</span> <span class="fl">0.001</span> <span class="co"># mm </span></span>
@@ -633,7 +633,7 @@ Fe_K total: 1.0000</code></pre>
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>T_lead <span class="op">=</span> np.exp(<span class="op">-</span>d_lead <span class="op">*</span> mu_lead)</span>
 <span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>T_iron <span class="op">=</span> np.exp(<span class="op">-</span>d_iron <span class="op">*</span> mu_iron)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="41130c5d" class="cell" data-execution_count="29">
+<div id="359e9b8b" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>[<span class="dv">9</span>, <span class="dv">4</span>])</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>ax.plot(energy_keV, T_paper, label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>d_paper<span class="sc">}</span><span class="ss">mm paper'</span>)</span>
@@ -1091,7 +1091,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>2026 Rijkserfgoedlaboratorium Amsterdam</p>
+<p>2026 Rijkserfgoedlaboratorium Amsterdam | Made with jupydev</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

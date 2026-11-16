@@ -51,7 +51,7 @@ fig, axs = plt.subplots(nrows=2, sharex=True, figsize=[10, 10])
 ax0, ax1 = axs.flatten()
 ppa.plot_atlas(ax=ax0)
 
-xrf = ElementXRF('Pb') 
+xrf = ElementXRF('Pb', h_mm=0.01) 
 xrf.plot_spectrum(ax=ax1);
 ```
 

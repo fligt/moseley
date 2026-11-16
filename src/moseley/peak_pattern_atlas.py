@@ -191,6 +191,8 @@ class PeakPatternAtlas():
                 ax.set_ylabel('Atomic number (Z)')
             else:
                 ax.set_ylabel('Element')
+
+            ax.set_title('XRF Peak Pattern Atlas') 
             
             atlas = None 
             

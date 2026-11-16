@@ -21,4 +21,4 @@ website:
   sidebar:
     style: floating
     contents: auto
-  page-footer: "2026 Rijkserfgoedlaboratorium Amsterdam"
+  page-footer: "2026 Rijkserfgoedlaboratorium Amsterdam | Made with jupydev"
