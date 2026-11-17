@@ -14,7 +14,11 @@ jupyter:
 ---
 
 
-> Can you see the pattern? 
+> Predicting elemental XRF (X-Ray Fluorescence) spectra 
+
+In order to unravel measured x-ray fluorescence (XRF) spectra it is essential to be able to compute the theoretical spectral emission patterns for individual elements. An XRF spectrum consists of a number of peaks whose positions/energies (expressed in kilo electron Volt) are specific for a given element. To a first approximation the intensities of the peaks are proportional the concentration of the element. However if we look with more scrutiny it turns out that the exact height proportions of the peaks varies with the thickness of the sample. Let's skip the theoretical background and simply plot such an XRF spectrum. For now, simply import ElementXRF() and instantiate it for lead (Pb).
+
+If you are interested in the physics behind this, you can find the gory details in a later section...
 
 ```{python}
 from moseley import ElementXRF

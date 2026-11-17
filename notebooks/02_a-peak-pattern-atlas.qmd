@@ -15,7 +15,7 @@ jupyter:
 
 > The forest and the trees
 
-The basic idea of X-Ray Fluorescence is that each chemical element has a unique pattern of emission peaks. Roughly speaking the relative intensity of the emission peaks does not change too much. 
+Given our ability to generate theoretical XRF spectra we can now build an atlas of spectral peak patterns for different chemical elements. In the following we will ignore the exotic Lanthanides and Actinides and further limit our attention to what I call the Elements Of Interest. To plot the periodic table instantiate the PeriodicTable class and run the .plot() method. The edges of pre-selected elements of interest (to me) are colored red. For interactive plotting we will need to import the holoviews package and activate the 'bokeh' extension. 
 
 ```{python}
 from moseley import PeriodicTable, PeakPatternAtlas, ElementXRF
@@ -54,4 +54,3 @@ ppa.plot_atlas(ax=ax0)
 xrf = ElementXRF('Pb', h_mm=0.01) 
 xrf.plot_spectrum(ax=ax1);
 ```
-

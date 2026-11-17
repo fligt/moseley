@@ -223,14 +223,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <blockquote class="blockquote">
-<p>Can you see the pattern?</p>
+<p>Predicting elemental XRF (X-Ray Fluorescence) spectra</p>
 </blockquote>
-<div id="b8bd16cc" class="cell" data-execution_count="1">
+<p>In order to unravel measured x-ray fluorescence (XRF) spectra it is essential to be able to compute the theoretical spectral emission patterns for individual elements. An XRF spectrum consists of a number of peaks whose positions/energies (expressed in kilo electron Volt) are specific for a given element. To a first approximation the intensities of the peaks are proportional the concentration of the element. However if we look with more scrutiny it turns out that the exact height proportions of the peaks varies with the thickness of the sample. Let’s skip the theoretical background and simply plot such an XRF spectrum. For now, simply import ElementXRF() and instantiate it for lead (Pb).</p>
+<p>If you are interested in the physics behind this, you can find the gory details in a later section…</p>
+<div id="6aba24bd" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> moseley <span class="im">import</span> ElementXRF</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Plotting a theoretical X-ray fluorescence spectrum can be done with the <code>.plot_spectrum()</code> method.</p>
-<div id="273f2558" class="cell" data-execution_count="2">
+<div id="a842eb7c" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize plot </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">4</span>, figsize<span class="op">=</span>[<span class="dv">15</span>, <span class="dv">4</span>], sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> axs.flatten()</span>
@@ -251,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can see here that these spectra (blue with black markers) for lead consist of multiple Gaussian shaped peaks. Most of these peaks are the result of closely spaced emission lines (red color). Each emission line corresponds to a specific transition of an electron between different electron shells. Although these patterns for lead samples of different thicknesses look fairly similar, their precise proportions vary.</p>
 <p>If you want to inspect emission lines in detail you can take a look the <code>.lines_table</code> attribute.</p>
-<div id="a133a102" class="cell" data-execution_count="3">
+<div id="6969554a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Pb_xrf.lines_table <span class="co"># 0.5 mm </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
