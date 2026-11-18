@@ -29,11 +29,11 @@ build-backend = "uv_build"
 
 [[tool.jupytext.formats]]
 "notebooks/" = "qmd"
-"_nbs/_docs/" = "ipynb"
+"paired/docs_nbs/" = "ipynb"
 
 [[tool.jupytext.formats]]
 "src/moseley/" = "py:percent"
-"_nbs/_src/" = "ipynb"
+"paired/src_nbs/" = "ipynb"
 
 [dependency-groups]
 dev = [

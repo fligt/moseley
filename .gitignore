@@ -1,7 +1,6 @@
 _docs/
 _proc/
-# FL unignored this
-#_nbs/
+_nbs/
 
 *.bak
 .gitattributes
